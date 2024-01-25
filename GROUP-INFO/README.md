@@ -12,17 +12,17 @@ A full stack application for selling automotive parts for Customers.
 
 **Other Team Members Information:**
 
-Nikhita Muvva:
+Nikhita Muvva: .Net, Java, python, Javascript, React JS, PL/SQL, MVC, Entity framework, HTML and CSS
 
-Sai Samyuktha Paspuleti:
+Sai Samyuktha Paspuleti: Informatica,Java,Python,PL/SQL, Toad,Linux Scripting,HTML,CSS,JavaScript
 
 Pavani Venigalla: Java, C#, .Net, Azure, Python, MySQL, Angular JS, HTML, CSS, JavaScript.
 
-Jhasha Sri Ede:
+Jhasha Sri Ede: .Net, Java, Javascript, AWS, Python, MySQL, HTML, CSS.
 
-Sneha Reddy Gangannagari:
+Sneha Reddy Gangannagari: Java, Javascript, AWS, Python,Angular,MySQL, HTML, CSS.
 
-Rishika Yalamanchili:
+Rishika Yalamanchili: .Net, AWS, python, Javascript, PL/SQL, HTML and CSS , Java , Azure
 
 Himabindu Chunduri:
 
