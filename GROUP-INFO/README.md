@@ -12,7 +12,7 @@ A full stack application for selling automotive parts for Customers.
 
 **Other Team Members Information:**
 
-Nikhita Muvva: .Net, Java, python, Javascript, React JS, PL/SQL, MVC, Entity framework, HTML and CSS
+Nikhita Muvva: .Net, Java, python, Javascript, React JS, PL/SQL, MVC, Entity framework, Angular, HTML and CSS
 
 Sai Samyuktha Paspuleti: Informatica,Java,Python,PL/SQL, Toad,Linux Scripting,HTML,CSS,JavaScript
 
