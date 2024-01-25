@@ -10,22 +10,22 @@ A full stack application for selling automotive parts for Customers.
 
 **Technical Skills**: Java, Spring Boot microservices, JPA, Hibernate, Git, Jira, Confluence, MySQL, AWS, Docker, HTML, CSS, JavaScript and React JS.
 
-Other Team Members Group Information:
+**Other Team Members Information:**
 
-**Name**                            **Technical Skills**
-Nikhita Muvva
+Nikhita Muvva:
 
-Sai Samyuktha Paspuleti
+Sai Samyuktha Paspuleti:
 
 Pavani Venigalla: Java, C#, .Net, Azure, Python, MySQL, Angular JS, HTML, CSS, JavaScript.
 
-Jhasha Sri Ede
+Jhasha Sri Ede:
 
-Sneha Reddy Gangannagari
+Sneha Reddy Gangannagari:
 
-Rishika Yalamanchili
+Rishika Yalamanchili:
 
-Himabindu Chunduri
+Himabindu Chunduri:
+
 
 
 
