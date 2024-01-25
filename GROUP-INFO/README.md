@@ -13,6 +13,7 @@ A full stack application for selling automotive parts for Customers.
 Other Team Members Group Information:
 
 **Name**: Nikhita Muvva
+
 **Technical Skills**: .NET, Java, Python, Javascript,React JS, PL/SQL, MVC, Entity Framework, Angular, HTML  and CSS
 Sai Samyuktha Paspuleti
 
