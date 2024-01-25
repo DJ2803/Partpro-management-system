@@ -16,7 +16,7 @@ Nikhita Muvva:
 
 Sai Samyuktha Paspuleti:
 
-Pavani Venigalla:
+Pavani Venigalla: Java, C#, .Net, Azure, Python, MySQL, Angular JS, HTML, CSS, JavaScript.
 
 Jhasha Sri Ede:
 
