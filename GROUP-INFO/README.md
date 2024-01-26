@@ -6,11 +6,18 @@ A full stack application for selling automotive parts for Customers.
 
 **Group Name:** PartPro Management System
 
-**Repository Created By:** Sai Rahul Padma
+**Repository Created By:** Sai Rahul Padma 
+
 
 **Technical Skills**: Java, Spring Boot microservices, JPA, Hibernate, Git, Jira, Confluence, MySQL, AWS, Docker, HTML, CSS, JavaScript and React JS.
 
 **Team Members Information:**
+
+
+**Name**: Nikhita Muvva
+
+**Technical Skills**: .NET, Java, Python, Javascript,React JS, PL/SQL, MVC, Entity Framework, Angular, HTML  and CSS
+Sai Samyuktha Paspuleti
 
 **1. Nikhita Muvva:** .Net, Java, python, Javascript, React JS, PL/SQL, MVC, Entity framework, Angular, HTML and CSS
 
