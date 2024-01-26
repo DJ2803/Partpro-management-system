@@ -24,7 +24,7 @@ Sneha Reddy Gangannagari: Java, Javascript, AWS, Python,Angular,MySQL, HTML, CSS
 
 Rishika Yalamanchili: .Net, AWS, python, Javascript, PL/SQL, HTML and CSS , Java , Azure
 
-Himabindu Chunduri:
+Himabindu Chunduri: Python,C,C++,OPPS,Java,DataStructures,MySQL,HTML,CSS,JavaScript
 
 
 
