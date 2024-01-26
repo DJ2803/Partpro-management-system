@@ -7,7 +7,7 @@ A full stack application for selling automotive parts for Customers.
 
 **Repository Created By:** Sai Rahul Padma 
 
-**Technical Skills**: Informatica,Java,Python,PL/SQL, Toad,Linux Scripting,HTML,CSS,JavaScript.
+**Technical Skills**: Java, Spring Boot microservices, JPA, Hibernate, Git, Jira, Confluence, MySQL, AWS, Docker, HTML, CSS, JavaScript and React JS.
 
 **Team Members Information:**
 
