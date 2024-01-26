@@ -6,16 +6,16 @@ A full stack application for selling automotive parts for Customers.
 
 **Group Name:**
 
-**Repository Created By:** Sai Rahul Padma
+**Repository Created By:** Sai Samyuktha Paspuleti
 
-**Technical Skills**: Java, Spring Boot microservices, JPA, Hibernate, Git, Jira, Confluence, MySQL, AWS, Docker, HTML, CSS, JavaScript and React JS.
+**Technical Skills**: Informatica,Java,Python,PL/SQL, Toad,Linux Scripting,HTML,CSS,JavaScript.
 
 Other Team Members Group Information:
 
 **Name**                            **Technical Skills**
 Nikhita Muvva
 
-Sai Samyuktha Paspuleti
+Sai Rahul Padma
 
 Pavani Venigalla
 
