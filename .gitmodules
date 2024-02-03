@@ -1,0 +1,3 @@
+[submodule "partpromamagementsystem-frontend"]
+	path = partpromamagementsystem-frontend
+	url = https://github.com/padmarahul/partpromamagementsystem-frontend.git
