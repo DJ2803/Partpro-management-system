@@ -1,17 +1,16 @@
 package com.unt.se.ppms.entities;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "supplier")
@@ -21,54 +20,54 @@ public class Supplier {
 	@Column(name="supplier_id")
 	private int supplierId;
 	
-	@Column(name = "username")
-	private String userName;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "firstname")
-	private String firstName;
-	
-	@Column(name = "lastname")
-	private String lastName;
-	
-	@Column(name = "email_id")
-	private String emailId;
-	
-	@Column(name = "dateofbirth")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dob;
+	@Column(name = "supplier_type")
+	private String supplierType;
 	
 	@Column
-	private String gender;
+	private float rating;
 	
-	@Column(name = "mobileno")
+	@Column(name = "mobile_number")
 	private long mobileNumber;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+        name = "supplier_location",
+        joinColumns = @JoinColumn(name = "supplier_id"),
+        inverseJoinColumns = @JoinColumn(name = "location_id")
+    )
+    private Set<Location> locations = new HashSet<>();
+	
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+        name = "supplier_product",
+        joinColumns = @JoinColumn(name = "supplier_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Products> products = new HashSet<>();
+	
+	
 
 	public Supplier() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Supplier(int supplierId, String userName, String firstName,
-			String lastName, String emailId, LocalDate dob, String gender,
-			@Size(min = 10, max = 10, message = "Mobile number must be exactly 10 digits") long mobileNumber,
-			User user) {
+	public Supplier(int supplierId, String name, String supplierType, float rating, long mobileNumber,
+			Set<Location> locations, Set<Products> products) {
 		super();
 		this.supplierId = supplierId;
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-		this.dob = dob;
-		this.gender = gender;
+		this.name = name;
+		this.supplierType = supplierType;
+		this.rating = rating;
 		this.mobileNumber = mobileNumber;
-		this.user = user;
+		this.locations = locations;
+		this.products = products;
 	}
-
-
+	
+	
 
 	public int getSupplierId() {
 		return supplierId;
@@ -78,52 +77,28 @@ public class Supplier {
 		this.supplierId = supplierId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getSupplierType() {
+		return supplierType;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setSupplierType(String supplierType) {
+		this.supplierType = supplierType;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public float getRating() {
+		return rating;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public LocalDate getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setRating(float rating) {
+		this.rating = rating;
 	}
 
 	public long getMobileNumber() {
@@ -134,19 +109,27 @@ public class Supplier {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public User getUser() {
-		return user;
+	public Set<Location> getLocations() {
+		return locations;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
+	}
+
+	public Set<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Products> products) {
+		this.products = products;
 	}
 
 	@Override
 	public String toString() {
-		return "Supplier [supplierId=" + supplierId + ", userName=" + userName + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", emailId=" + emailId + ", dob=" + dob + ", gender=" + gender
-				+ ", mobileNumber=" + mobileNumber + ", user=" + user + "]";
+		return "Supplier [supplierId=" + supplierId + ", name=" + name + ", supplierType=" + supplierType + ", rating="
+				+ rating + ", mobileNumber=" + mobileNumber + ", locations=" + locations + ", products=" + products
+				+ "]";
 	}
 	
 	

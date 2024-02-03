@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.unt.se.ppms.entities.Customer;
 import com.unt.se.ppms.entities.Employer;
 import com.unt.se.ppms.entities.OneTimePasscode;
-import com.unt.se.ppms.entities.Supplier;
 import com.unt.se.ppms.entities.User;
 import com.unt.se.ppms.exceptions.InvalidLoginCredentialsException;
 import com.unt.se.ppms.exceptions.OtpInvalidException;
@@ -23,7 +22,6 @@ import com.unt.se.ppms.repository.CustomerRepository;
 import com.unt.se.ppms.repository.EmployerRepository;
 import com.unt.se.ppms.repository.LoginRepository;
 import com.unt.se.ppms.repository.OneTimePasscodeRepository;
-import com.unt.se.ppms.repository.SupplierRepository;
 import com.unt.se.ppms.service.LoginService;
 
 @Service
@@ -38,9 +36,6 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
 	private EmployerRepository employerRepository;
-	
-	@Autowired
-	private SupplierRepository supplierRepository;
 	
 	@Autowired
 	private OneTimePasscodeRepository otpRepository;
@@ -59,18 +54,14 @@ public class LoginServiceImpl implements LoginService {
 			}else {
 				loginRepository.save(user);
 				otpRepository.save(new OneTimePasscode(user.getUserId(),0,LocalDateTime.now(),user));
-				if(user.getTypeOfUser().toLowerCase().equals("customer")) {
-					Customer customer = new Customer(user.getUserId(),user.getUserName(),user.getFirstName(),user.getLastName(),
+				if(user.typeOfUser.toLowerCase().equals("customer")) {
+					Customer customer = new Customer(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),
 							user.getEmailId(),user.getDob(),user.getGender(),user.getMobileNumber(),user);
 					customerRepository.save(customer);
 				}else if(user.getTypeOfUser().toLowerCase().equals("employer")) {
-					Employer employer = new Employer(user.getUserId(),user.getUserName(),user.getFirstName(),user.getLastName(),
+					Employer employer = new Employer(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),
 							user.getEmailId(),user.getDob(),user.getGender(),user.getMobileNumber(),user);
 					employerRepository.save(employer);
-				}else if(user.getTypeOfUser().toLowerCase().equals("supplier")) {
-					Supplier supplier = new Supplier(user.getUserId(),user.getUserName(),user.getFirstName(),user.getLastName(),
-							user.getEmailId(),user.getDob(),user.getGender(),user.getMobileNumber(),user);
-					supplierRepository.save(supplier);
 				}
 				return "User added successfully";
 			}
@@ -86,9 +77,7 @@ public class LoginServiceImpl implements LoginService {
 		try {
 			var user = loginRepository.findByUserName(username);
 			if(user.isPresent()) {
-				System.out.println("Step-1");
 				if(user.get().getPassword().equals(password)) {
-					System.out.println("Step-2");
 					generateAndSaveOtp(user.get().getUserId());
 					return "Enter OTP generated";
 				}else {
@@ -110,7 +99,6 @@ public class LoginServiceImpl implements LoginService {
 			var user = otpRepository.findById(id);
 			if(user.isPresent()) {
 				var temp = user.get();
-				LocalDateTime time = LocalDateTime.now();
 				if(temp.getGeneratedTime().isBefore(temp.getGeneratedTime().plusMinutes(5))) {
 					if(temp.getOtp()==otp) {
 						var role = getUserById(id);
@@ -137,6 +125,17 @@ public class LoginServiceImpl implements LoginService {
 			var user = loginRepository.findByUserName(username);
 			if(user.isPresent()) {
 				user.get().setPassword(newPassword);
+				loginRepository.save(user.get());
+				var role = user.get().getTypeOfUser();
+				if(role.toLowerCase().equals("customer")) {
+					var customer = customerRepository.findById(user.get().getUserId()).get();
+					customer.setPassword(newPassword);
+					customerRepository.save(customer);
+				}else if(role.toLowerCase().equals("employer")) {
+					var employer = employerRepository.findById(user.get().getUserId()).get();
+					employer.setPassword(newPassword);
+					employerRepository.save(employer);
+				}
 				return "Password changed successfully";
 			}else {
 				throw new UserNotFoundException("User doesn't exist");
@@ -160,7 +159,6 @@ public class LoginServiceImpl implements LoginService {
 	public OneTimePasscode generateAndSaveOtp(int id) throws UserNotFoundException {
 		try {
 			if(getUserById(id)!=null) {
-				System.out.println("Step-3");
 				Random random = new Random();
 				int otp = 1000 + random.nextInt(9000);
 		        LocalDateTime time = LocalDateTime.now();
@@ -168,9 +166,7 @@ public class LoginServiceImpl implements LoginService {
 		        temp.setGeneratedTime(time);
 		        temp.setOtp(otp);
 	        	otpRepository.save(temp);
-	        	System.out.println("Step-4");
 	        	sendOtpEmail(getUserById(id).getEmailId(), otp, id);
-	        	System.out.println("Step-5");
 	        	return temp;
 	        }else {
 	        	throw new UserNotFoundException("User doesn't exist");

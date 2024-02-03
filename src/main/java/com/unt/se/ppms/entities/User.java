@@ -26,36 +26,36 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
-	private int userId;
+	public int userId;
 	
 	@Column(name = "username")
-	private String userName;
+	public String userName;
 	
 	@Column
 	@Size(min = 8,message = "Password should contain atleast 8 characters")
-	private String password;
+	public String password;
 	
 	@Column(name = "firstname")
-	private String firstName;
+	public String firstName;
 	
 	@Column(name = "lastname")
-	private String lastName;
+	public String lastName;
 	
 	@Column(name = "email_id")
-	private String emailId;
+	public String emailId;
 	
 	@Column(name = "dateofbirth")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dob;
+	public LocalDate dob;
 	
 	@Column
-	private String gender;
+	public String gender;
 	
 	@Column(name = "mobileno")
-	private long mobileNumber;
+	public long mobileNumber;
 	
 	@Column(name = "type_of_user")
-	private String typeOfUser;
+	public String typeOfUser;
 	
 	@OneToOne(mappedBy = "user")
 	@JsonIgnore
@@ -68,6 +68,8 @@ public class User {
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private OneTimePasscode otp;
+	
+	
 	
 	public User() {
 		super();
@@ -88,6 +90,8 @@ public class User {
 		this.mobileNumber = mobileNumber;
 		this.typeOfUser = typeOfUser;
 	}
+	
+	
 
 	public int getUserId() {
 		return userId;
@@ -167,6 +171,30 @@ public class User {
 
 	public void setTypeOfUser(String typeOfUser) {
 		this.typeOfUser = typeOfUser;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Employer getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
+	}
+
+	public OneTimePasscode getOtp() {
+		return otp;
+	}
+
+	public void setOtp(OneTimePasscode otp) {
+		this.otp = otp;
 	}
 
 	@Override
