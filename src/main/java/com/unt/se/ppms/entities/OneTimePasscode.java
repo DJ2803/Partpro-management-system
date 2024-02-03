@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class OneTimePasscode {
 	
 	@Id
-	private int user_id;
+	private int id;
 	
 	@Column
 	private long otp;
@@ -31,20 +31,20 @@ public class OneTimePasscode {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OneTimePasscode(int user_id, long otp, LocalDateTime generatedTime, User user) {
+	public OneTimePasscode(int id, long otp, LocalDateTime generatedTime, User user) {
 		super();
-		this.user_id = user_id;
+		this.id = id;
 		this.otp = otp;
 		this.generatedTime = generatedTime;
 		this.user = user;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public long getOtp() {
@@ -73,9 +73,11 @@ public class OneTimePasscode {
 
 	@Override
 	public String toString() {
-		return "OneTimePasscode [user_id=" + user_id + ", otp=" + otp + ", generatedTime=" + generatedTime + ", user="
-				+ user + "]";
+		return "OneTimePasscode [id=" + id + ", otp=" + otp + ", generatedTime=" + generatedTime + ", user=" + user
+				+ "]";
 	}
+
+	
 	
 	
 
