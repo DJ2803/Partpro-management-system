@@ -1,0 +1,19 @@
+Submitted Documents in GitHub for deliverable 1 are
+partpto-management-system/README.MD
+partpto-management-system/GROUP-INFO
+partpto-management-system/Meeting_minutes
+partpto-management-system/src/
+partpto-management-system/partpromamagementsystem-frontend
+Added all the folders of the project
+
+Directory for Information of Group Members: partpto-management-system/GROUP-INFO/
+
+Directory for  Discussions regarding design and other adhoc tasks: partpto-management-system/Meeting_minutes/
+
+Directory for Planning Documents: partpto-management-system/Planning/
+
+Directory for Storage of all Project Deliverable Reports: partpto-management-system/Project_Reports/
+
+ Directory for back end : partpto-management-system/src/
+
+Directory for Submodule for Front end: partpto-management-system/partpromamagementsystem-frontend
