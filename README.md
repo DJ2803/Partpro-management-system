@@ -11,6 +11,6 @@ Planning: partpro-management-system/Planning/
 
 Project_Report : partpro-management-system/Project_Reports/
 
-Source code for back end : partpro-management-system/src/
+Source code for back end : partpro-management-system/backend/
 
-Source code for frone end which is a submodule: partpro-management-system/partpromamagementsystem-frontend/
+Source code for front end :partpro-management-system/frontend/
