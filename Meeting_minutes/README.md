@@ -1,18 +1,5 @@
-# partpro-management-system
-A full stack application for selling automative parts for Customers
-
-A full stack application for selling automative parts for Customers
-
-Project Directories
-
-Group_Info : partpro-management-system/Group_Info/
-
-Meeting minutes : partpro-management-system/Meeting_minutes/
-
-Planning: partpro-management-system/Planning/
-
-Project_Report : partpro-management-system/Project_Reports/
-
-Source code for back end : partpro-management-system/backend/
-
-Source code for front end :partpro-management-system/frontend/
+| **TIME**                |  **ATTENDIES**                                |  **Things Discussed**     |
+|  ---------------------- | --------------------------------------------- | ------------------------- |
+| January 24 , 6 to 7 pm.  | SAI RAHUL PADMA, NIKHITA MUVVA, SAI SAMYUKTHA PASPULETI, RISHIKA YALAMANCHILI,PAVANI VENIGALLA, HIMABINDU CHUNDURI, SNEHA GANGANNAGARI, JHASHA SRI EDE  | Introduced ourselves to the group members and discussed each other what are the intrests and creatd GitHub repository for group and trello kanban board| 
+| January 29, 30  4 to 5 pm.  | SAI RAHUL PADMA, NIKHITA MUVVA, SAI SAMYUKTHA PASPULETI, RISHIKA YALAMANCHILI,PAVANI VENIGALLA, HIMABINDU CHUNDURI, SNEHA GANGANNAGARI, JHASHA SRI EDE | Decided the group name , project title and technologies. Assigned the roles to the members based on their skills and completed brainstorming.|
+| February 2, 1 to 4 pm.  | SAI RAHUL PADMA, NIKHITA MUVVA, SAI SAMYUKTHA PASPULETI, RISHIKA YALAMANCHILI,PAVANI VENIGALLA, HIMABINDU CHUNDURI, SNEHA GANGANNAGARI, JHASHA SRI EDE  | Deliverable 1 tasks are assigned to each and every team member and started working on the tasks assigned and updated all the directories and meeting minutes in the GitHub|
