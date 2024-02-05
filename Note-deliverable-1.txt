@@ -14,6 +14,6 @@ Directory for Planning Documents: partpto-management-system/Planning/
 
 Directory for Storage of all Project Deliverable Reports: partpto-management-system/Project_Reports/
 
- Directory for back end : partpto-management-system/src/
+Source code for back end : partpro-management-system/backend/
 
-Directory for Submodule for Front end: partpto-management-system/partpromamagementsystem-frontend
+Source code for front end :partpro-management-system/frontend/
