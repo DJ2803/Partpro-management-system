@@ -11,7 +11,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "supplier")
 public class Supplier {
@@ -26,8 +30,6 @@ public class Supplier {
 	@Column(name = "supplier_type")
 	private String supplierType;
 	
-	@Column
-	private float rating;
 	
 	@Column(name = "mobile_number")
 	private long mobileNumber;
@@ -55,80 +57,21 @@ public class Supplier {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Supplier(int supplierId, String name, String supplierType, float rating, long mobileNumber,
+	public Supplier(int supplierId, String name, String supplierType, long mobileNumber,
 			Set<Location> locations, Set<Products> products) {
 		super();
 		this.supplierId = supplierId;
 		this.name = name;
 		this.supplierType = supplierType;
-		this.rating = rating;
 		this.mobileNumber = mobileNumber;
 		this.locations = locations;
 		this.products = products;
 	}
 	
 	
-
-	public int getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSupplierType() {
-		return supplierType;
-	}
-
-	public void setSupplierType(String supplierType) {
-		this.supplierType = supplierType;
-	}
-
-	public float getRating() {
-		return rating;
-	}
-
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
-
-	public long getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(long mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
-	public Set<Location> getLocations() {
-		return locations;
-	}
-
-	public void setLocations(Set<Location> locations) {
-		this.locations = locations;
-	}
-
-	public Set<Products> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Set<Products> products) {
-		this.products = products;
-	}
-
 	@Override
 	public String toString() {
-		return "Supplier [supplierId=" + supplierId + ", name=" + name + ", supplierType=" + supplierType + ", rating="
-				+ rating + ", mobileNumber=" + mobileNumber + ", locations=" + locations + ", products=" + products
+		return "Supplier [supplierId=" + supplierId + ", name=" + name + ", supplierType=" + supplierType + ", mobileNumber=" + mobileNumber + ", locations=" + locations + ", products=" + products
 				+ "]";
 	}
 	

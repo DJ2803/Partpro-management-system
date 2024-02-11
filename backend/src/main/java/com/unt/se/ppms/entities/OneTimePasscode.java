@@ -8,7 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name="one_time_passcode")
 public class OneTimePasscode {
@@ -39,37 +43,6 @@ public class OneTimePasscode {
 		this.user = user;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public long getOtp() {
-		return otp;
-	}
-
-	public void setOtp(long otp) {
-		this.otp = otp;
-	}
-
-	public LocalDateTime getGeneratedTime() {
-		return generatedTime;
-	}
-
-	public void setGeneratedTime(LocalDateTime generatedTime) {
-		this.generatedTime = generatedTime;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	@Override
 	public String toString() {
@@ -77,8 +50,5 @@ public class OneTimePasscode {
 				+ "]";
 	}
 
-	
-	
-	
 
 }

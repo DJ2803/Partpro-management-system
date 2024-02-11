@@ -12,7 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "location")
 public class Location {
@@ -34,7 +38,7 @@ public class Location {
 	private String operatingHours;
 	
 	@ManyToMany(mappedBy = "locations")
-    private Set<Employer> employers = new HashSet<>();
+    private Set<Employee> employers = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "locations")
     private Set<Supplier> suppliers = new HashSet<>();
