@@ -1,9 +1,11 @@
 package com.unt.se.ppms.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.unt.se.ppms.entities.Employer;
+import com.unt.se.ppms.entities.Employee;
 
-public interface EmployerRepository extends JpaRepository<Employer, Integer> {
+@Repository
+public interface EmployerRepository extends JpaRepository<Employee, Integer> {
 
 }
