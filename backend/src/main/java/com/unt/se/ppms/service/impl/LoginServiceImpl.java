@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unt.se.ppms.entities.Customer;
-import com.unt.se.ppms.entities.Employer;
 import com.unt.se.ppms.entities.OneTimePasscode;
 import com.unt.se.ppms.entities.User;
 import com.unt.se.ppms.exceptions.InvalidLoginCredentialsException;
@@ -19,7 +18,7 @@ import com.unt.se.ppms.exceptions.UserEmailIdAlreadyExistsException;
 import com.unt.se.ppms.exceptions.UserNameAlreadyExistsException;
 import com.unt.se.ppms.exceptions.UserNotFoundException;
 import com.unt.se.ppms.repository.CustomerRepository;
-import com.unt.se.ppms.repository.EmployerRepository;
+import com.unt.se.ppms.repository.EmployeeRepository;
 import com.unt.se.ppms.repository.LoginRepository;
 import com.unt.se.ppms.repository.OneTimePasscodeRepository;
 import com.unt.se.ppms.service.LoginService;
@@ -35,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	private EmployerRepository employerRepository;
+	private EmployeeRepository employeeRepository;
 	
 	@Autowired
 	private OneTimePasscodeRepository otpRepository;
@@ -52,17 +51,12 @@ public class LoginServiceImpl implements LoginService {
 			}else if(loginRepository.existsByEmailId(user.getEmailId())) {
 				return "Email ID already exists";
 			}else {
+				user.setTypeOfUser("customer");
 				loginRepository.save(user);
 				otpRepository.save(new OneTimePasscode(user.getUserId(),0,LocalDateTime.now(),user));
-				if(user.typeOfUser.toLowerCase().equals("customer")) {
-					Customer customer = new Customer(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),
-							user.getEmailId(),user.getDob(),user.getGender(),user.getMobileNumber(),user);
-					customerRepository.save(customer);
-				}else if(user.getTypeOfUser().toLowerCase().equals("employer")) {
-					Employer employer = new Employer(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName(),user.getLastName(),
-							user.getEmailId(),user.getDob(),user.getGender(),user.getMobileNumber(),user);
-					employerRepository.save(employer);
-				}
+				Customer customer = new Customer(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName()+" "+user.getLastName(),
+							user.getEmailId(),user.getGender(),user.getMobileNumber(),user.getZipcode());
+				customerRepository.save(customer);
 				return "User added successfully";
 			}
 			
@@ -131,10 +125,10 @@ public class LoginServiceImpl implements LoginService {
 					var customer = customerRepository.findById(user.get().getUserId()).get();
 					customer.setPassword(newPassword);
 					customerRepository.save(customer);
-				}else if(role.toLowerCase().equals("employer")) {
-					var employer = employerRepository.findById(user.get().getUserId()).get();
-					employer.setPassword(newPassword);
-					employerRepository.save(employer);
+				}else if(role.toLowerCase().equals("employee")) {
+					var employee = employeeRepository.findById(user.get().getUserId()).get();
+					employee.setPassword(newPassword);
+					employeeRepository.save(employee);
 				}
 				return "Password changed successfully";
 			}else {

@@ -9,7 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "product_category")
 public class ProductCategory {
@@ -20,6 +24,9 @@ public class ProductCategory {
 	
 	@Column(name = "category_name")
 	private String categoryName;
+	
+	@Column(name = "category_image")
+	private String categoryImage;
 	
 	@Column
 	private String description;

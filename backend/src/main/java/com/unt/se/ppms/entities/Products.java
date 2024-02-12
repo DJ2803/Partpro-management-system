@@ -15,7 +15,11 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "products")
 public class Products {
@@ -29,6 +33,9 @@ public class Products {
 	
 	@Column(name = "product_price")
 	private float productPrice;
+	
+	@Column(name = "product_image")
+	private String productImage;
 	
 	@Column(name = "barcode")
 	private String barCode;
