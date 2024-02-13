@@ -1,4 +1,4 @@
-Submitted Documents in GitHub for deliverable 1 are
+Deliverable 1 Submission Documents are
 partpro-management-system/README.MD
 partpro-management-system/GROUP-INFO
 partpro-management-system/Meeting_minutes
