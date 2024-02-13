@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.unt.se.ppms.entities.Products;
 
 @Repository
-public interface ProductsRepository extends JpaRepository<Products, Integer>{
+public interface ProductsRepository extends JpaRepository<Products, Long>{
 	
 	@Query("SELECT p FROM Products p")
     List<Products> getAllProducts();
