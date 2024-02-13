@@ -1,4 +1,4 @@
-| **TIME**                |  **ATTENDIES**                                |  **Things Discussed**     |
+| Meeting Time            |  Participants                               |    Discussion Notes  |
 |  ---------------------- | --------------------------------------------- | ------------------------- |
 | January 24 , 6 to 7 pm.  | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede  | Created github repository and trello board and introduced ourselves regarding each individual's technical expertise.| 
 | January 29, 30  4 to 5 pm.  |Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede  | Decided and finalized the project idea and divided tasks among ourselves.|
