@@ -45,7 +45,7 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public List<Products> getAllProducts() {
 		List<Products> products = new ArrayList<Products>();
-		products = productsRepository.findAll();
+		products = productsRepository.getAllProducts();
 		if (products.isEmpty()) {
             throw new ResourceNotFoundException("No products found");
         }
