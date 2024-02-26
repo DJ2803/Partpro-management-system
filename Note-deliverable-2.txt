@@ -1,3 +1,4 @@
 Submitted Documents in GitHub for deliverable 2 are
 
-partpro-management-system/Meeting_minutes
+partpro-management-system/Meeting_minutes/README.MD
+partpro-management-system/Project_Reports/Deliverable2.pdf
