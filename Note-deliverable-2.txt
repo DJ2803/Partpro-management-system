@@ -1,4 +1,16 @@
 Submitted Documents in GitHub for deliverable 2 are
 
-partpro-management-system/Meeting_minutes/README.MD
-partpro-management-system/Project_Reports/Deliverable2.pdf
+partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+partpro-management-system/Project_Reports/PartProManagementSystem-del-2.pdf
+partpro-management-system/Planning/SystemDiagram.jpg
+partpro-management-system/backend/
+
+
+
+Updated Meeting Minutes regarding Deliverable 2: partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+
+Uploaded Deliverable 2 documentation : partpro-management-system/Project_Reports/PartProManagementSystem-del-2.pdf
+
+Added System Diagram which we have designed as part of Deliverable 2: partpro-management-system/Planning/SystemDiagram.jpg
+
+Started working on back end design and development : partpro-management-system/backend/

@@ -1,9 +1,9 @@
 Deliverable 1 Submission Documents are
 partpro-management-system/README.MD
 partpro-management-system/GROUP-INFO
-partpro-management-system/Meeting_minutes
-partpro-management-system/src/
-partpro-management-system/partpromamagementsystem-frontend
+partpro-management-system/PartProMeetingMinutes.md
+partpro-management-system/backend/
+partpro-management-system/frontend/
 Added all the folders of the project
 
 Directory for Information of Group Members: partpro-management-system/GROUP-INFO/
