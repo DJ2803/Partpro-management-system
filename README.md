@@ -5,7 +5,7 @@ Project Directories
 
 Group_Info : partpro-management-system/Group_Info/
 
-Meeting minutes : partpro-management-system/Meeting_minutes/
+PartPro Meeting minutes : partpro-management-system/Meeting_minutes/
 
 Planning: partpro-management-system/Planning/
 
