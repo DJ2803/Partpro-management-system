@@ -7,7 +7,7 @@ partpro-management-system/backend/
 
 
 
-Updated Meeting Minutes regarding Deliverable 2: partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+Updated  PartProMeetingMinutes for Deliverable 2: partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
 
 Uploaded Deliverable 2 documentation : partpro-management-system/Project_Reports/PartProManagementSystem-del-2.pdf
 
