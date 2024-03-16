@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.64b0b660.chunk.css",
+    "main.js": "/static/js/main.1213bf4f.chunk.js",
+    "main.js.map": "/static/js/main.1213bf4f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1d45836c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1d45836c.js.map",
+    "static/css/2.4659568d.chunk.css": "/static/css/2.4659568d.chunk.css",
+    "static/js/2.94f35f17.chunk.js": "/static/js/2.94f35f17.chunk.js",
+    "static/js/2.94f35f17.chunk.js.map": "/static/js/2.94f35f17.chunk.js.map",
+    "static/js/3.f1480e2d.chunk.js": "/static/js/3.f1480e2d.chunk.js",
+    "static/js/3.f1480e2d.chunk.js.map": "/static/js/3.f1480e2d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.4659568d.chunk.css.map": "/static/css/2.4659568d.chunk.css.map",
+    "static/css/main.64b0b660.chunk.css.map": "/static/css/main.64b0b660.chunk.css.map",
+    "static/js/2.94f35f17.chunk.js.LICENSE.txt": "/static/js/2.94f35f17.chunk.js.LICENSE.txt",
+    "static/media/LoginScreen.css": "/static/media/bgImage.980d12ce.jpg",
+    "static/media/productsIcon.196d9182.svg": "/static/media/productsIcon.196d9182.svg",
+    "static/media/untlogo.c7f331e7.png": "/static/media/untlogo.c7f331e7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1d45836c.js",
+    "static/css/2.4659568d.chunk.css",
+    "static/js/2.94f35f17.chunk.js",
+    "static/css/main.64b0b660.chunk.css",
+    "static/js/main.1213bf4f.chunk.js"
+  ]
+}
