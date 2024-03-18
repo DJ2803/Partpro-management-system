@@ -1,6 +1,7 @@
 package com.unt.se.ppms.entities;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -45,14 +46,7 @@ public void setStr(String str) {
     @Column(name = "payment_id")
     private String paymentId;
     
-    public PaymentInfo(String paymentId, String payerId, String paymentStatus, Double amount, String currency) {
-		super();
-		this.paymentId = paymentId;
-		this.payerId = payerId;
-		this.paymentStatus = paymentStatus;
-		this.amount = amount;
-		this.currency = currency;
-	}
+    
 
 	@Column(name="payer_id")
     private String payerId;

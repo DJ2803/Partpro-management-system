@@ -11,6 +11,7 @@ com/unt/se/ppms/entities/OnlineSales.class
 com/unt/se/ppms/service/CustomerService.class
 com/unt/se/ppms/controller/EmployeeController.class
 com/unt/se/ppms/entities/Vehicles.class
+com/unt/se/ppms/dto/CategoryDataDTO.class
 com/unt/se/ppms/exceptions/UserEmailIdAlreadyExistsException.class
 com/unt/se/ppms/dto/UserData.class
 com/unt/se/ppms/service/impl/LoginServiceImpl.class
@@ -25,12 +26,14 @@ com/unt/se/ppms/entities/Location.class
 com/unt/se/ppms/repository/SupplierRepository.class
 com/unt/se/ppms/exceptions/EmployeeNotFoundException.class
 com/unt/se/ppms/repository/CustomerRepository.class
+com/unt/se/ppms/dto/CartDto.class
 com/unt/se/ppms/entities/Employee.class
 com/unt/se/ppms/service/PaymentInfoService.class
 com/unt/se/ppms/application/PartpromanagementsystemApplication.class
 com/unt/se/ppms/repository/CartRepository.class
 com/unt/se/ppms/exceptions/InvalidLoginCredentialsException.class
 com/unt/se/ppms/controller/DashboardController.class
+com/unt/se/ppms/repository/LocationRepository.class
 com/unt/se/ppms/entities/OneTimePasscode.class
 com/unt/se/ppms/repository/ProductCategoryRepository.class
 com/unt/se/ppms/controller/CustomerController.class
@@ -45,6 +48,7 @@ com/unt/se/ppms/entities/Customer.class
 com/unt/se/ppms/repository/ProductsRepository.class
 com/unt/se/ppms/repository/EmployeeRepository.class
 com/unt/se/ppms/entities/Cart$OrderStatus.class
+com/unt/se/ppms/dto/LocationDataDTO.class
 com/unt/se/ppms/repository/LoginRepository.class
 com/unt/se/ppms/service/EmployeeService.class
 com/unt/se/ppms/repository/OneTimePasscodeRepository.class

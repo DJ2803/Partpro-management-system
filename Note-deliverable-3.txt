@@ -1,0 +1,27 @@
+Submitted Documents in GitHub for deliverable 3 are
+
+partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+partpro-management-system/inspection-code-team-PartPro Management System.docx
+partpro-management-system/Project_Reports/PartProManagementSystem-del-3.pdf
+partpro-management-system/Planning/UseCaseDiagram.jpg
+partpro-management-system/Planning/ErrorUseCaseDiagram.jpg
+partpro-management-system/Planning/SequenceDiagram.png
+partpro-management-system/Planning/ClassDiagram.jpg
+partpro-management-system/src/backend/
+partpro-management-system/src/frontend/
+
+
+Updated  PartProMeetingMinutes for Deliverable 3: partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+
+Uploaded core functionalities documented developed for development phase 1: partpro-management-system/inspection-code-team-PartPro Management System.docx
+
+Uploaded Deliverable 3 documentation : partpro-management-system/Project_Reports/PartProManagementSystem-del-3.pdf
+
+Added UseCaseDiagram, ErrorUseCaseDiagram, SequenceDiagram and ClassDiagram which we have designed as part of Deliverable 3: 
+partpro-management-system/Planning/UseCaseDiagram.jpg
+partpro-management-system/Planning/ErrorUseCaseDiagram.jpg
+partpro-management-system/Planning/SequenceDiagram.png
+partpro-management-system/Planning/ClassDiagram.jpg
+
+Implemented development phase 1 features for back end: partpro-management-system/src/backend/
+Implemented development phase 1 features for front end: partpro-management-system/src/frontend/
