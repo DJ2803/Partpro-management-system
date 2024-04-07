@@ -1,0 +1,87 @@
+package com.unt.se.ppms.service.impl;
+
+import com.unt.se.ppms.dto.InventoryDTO;
+import com.unt.se.ppms.dto.ProductsDTO;
+import com.unt.se.ppms.entities.Products;
+import com.unt.se.ppms.exceptions.ProductNotFoundException;
+import com.unt.se.ppms.repository.*;
+import com.unt.se.ppms.service.ProductService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+	@Autowired
+	private InventoryRepository inventoryRepository;
+	
+	@Autowired
+	private ProductsRepository productsRepository;
+	
+	@Autowired 
+	private ProductCategoryRepository  productCategoryRepository;
+
+	@Override
+	public String updateProductCount(InventoryDTO product) {
+		try {
+			int status = inventoryRepository.updateProductQuantityByProductId(product.getProductId(),product.getProductCount());
+			if(status == 1) {
+				return "Product count updated successfully";
+			} else {
+				return "product count updation failed";
+			}
+		} catch(Exception e) {
+			return "product count updation failed";
+		}
+	}
+
+	@Override
+	public String updateProductInfo(ProductsDTO product) throws ProductNotFoundException {
+		try{
+			Products product1 = productsRepository.findById(product.getProductId())
+		            .orElseThrow(() -> new RuntimeException("Product not found"));
+			product1.setProductName(product.getProductName());
+			product1.setProductPrice(product.getProductPrice());
+			product1.setProductDescription(product.getProductDescription());
+			productsRepository.save(product1);
+			return "Product Details updated successfully";
+			
+		}catch(Exception e) {
+			throw new ProductNotFoundException("Invalid Product");
+		}
+	}
+
+	@Override
+	public String deleteProduct(long productId) {
+		try {
+			 productsRepository.deleteById(productId);
+				return "Product deleted successfully";
+			
+		} catch(Exception e) {
+			return "product deletion failed";
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public String addProduct(ProductsDTO product) throws ProductNotFoundException {
+		try{
+			Products product1 = new Products();
+			product1.setProductName(product.getProductName());
+			product1.setProductPrice(product.getProductPrice());
+			product1.setBarCode("234567890");
+			product1.setCategory(productCategoryRepository.getById(5));;
+			product1.setProductImage("data:image/jpeg;base64,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");
+			product1.setProductDescription(product.getProductDescription());
+			productsRepository.save(product1);
+			return "Product Details addded successfully";
+			
+		}catch(Exception e) {
+			throw new ProductNotFoundException("Invalid Product");
+		}
+		
+	}
+
+}

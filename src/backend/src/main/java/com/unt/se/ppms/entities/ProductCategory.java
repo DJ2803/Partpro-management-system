@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
@@ -21,6 +23,7 @@ public class ProductCategory {
 	
 	@Id
 	@Column(name = "category_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long categoryId;
 	
 	@Column(name = "category_name")

@@ -8,6 +8,8 @@ import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -23,6 +25,7 @@ public class Location {
 
 	@Id
 	@Column(name = "location_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long locationId;
 	
 	@Column(name = "contact_number")
