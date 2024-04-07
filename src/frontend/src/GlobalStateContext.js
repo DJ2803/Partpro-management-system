@@ -31,6 +31,7 @@ const initialState = {
   // Initialize your state here
   userData: null,
   otherData: null,
+  employeeData: null,
   cart: []
 };
 
@@ -39,6 +40,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_USER_DATA':
       return { ...state, userData: action.payload };
+    case 'EMPLOYEE_DATA':
+      return { ...state, employeeData: action.payload };
     case 'SET_OTHER_DATA':
       return { ...state, otherData: action.payload };
       case 'ADD_TO_CART':
@@ -51,6 +54,8 @@ const reducer = (state, action) => {
       return { ...state, cart: state.cart.map(item => item.id === action.payload && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item) };
     case 'CLEAR_CART':
       return { ...state, cart: [] };
+    case 'CLEAR_EMPLOYEE':
+      return {...state, employeeData: []};
     default:
       return state;
   }

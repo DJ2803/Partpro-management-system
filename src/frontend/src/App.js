@@ -15,6 +15,12 @@ import CartComponent from "./pages/CartComponent"
 import ForgotPassword from "./pages/ForgotPassword";
 import OrderDetailsComponent from "./pages/OrderDetailsComponent";
 import ProductsByCategory from "./pages/ProductsByCategory";
+import EmployeeDashboard from "./pages/EmployeeDashboardComponent";
+import ManageProductsComponents from "./pages/ManageProductsComponent";
+import PostProductsComponent from "./pages/PostProductsComponent";
+import UpdateProductComponent from "./pages/UpdateProductcomponent";
+import UpdateInventoryComponent from "./pages/UpdateInventoryComponent";
+import OrderTrackingComponent from "./pages/OrderTrackingComponent";
 
 function App() {
   return (
@@ -26,12 +32,18 @@ function App() {
             <Route path='/login' element={<Login />} exact />
             <Route path='/signup' element={<SignUpComponent />} exact />
             <Route path='/dashboard' element={<Dashboard />} exact />
+            <Route path='/employee-dashboard' element={< EmployeeDashboard/>} exact />
             <Route path='/addvehicledetails/:id' element={<AddVehicleDetails />} exact />
             <Route path='/updatepersonaldetails/:id' element={<UpdatePersonalDetails />} exact />
             <Route path='/productdetails/:id' element={<ProductDetailsComponent />} exact />
             <Route path='/getProductsByCategory/:categoryName' element={<ProductsByCategory />} exact />
             <Route path='/cart' element={<CartComponent />} exact />
+            <Route path='/manage-products/:id' element={<ManageProductsComponents />} exact />
             <Route path='/changepassword' element={< ForgotPassword/>} exact />
+            <Route path='/add-product/:id' element={< PostProductsComponent/>} exact />
+            <Route path='/update-product/:id' element={< UpdateProductComponent/>} exact />
+            <Route path='/manage-inventory/:id' element={< UpdateInventoryComponent/>} exact />
+            <Route path='/order-tracking/:id' element={< OrderTrackingComponent/>} exact />
             <Route path='/payment-success/' element={< OrderDetailsComponent/>} exact />
           </Routes>
         </Router>

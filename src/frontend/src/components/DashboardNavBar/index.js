@@ -67,6 +67,12 @@ const Navbar = ({ toggle }) => {
     const id = state.userData.userId;
     navigate(`/updatepersonaldetails/${id}`);
   }
+
+  const handleTrackingDetails = (e) => {
+    e.preventDefault()
+    const id = state.userData.userId;
+    navigate(`/order-tracking/${id}`);
+  }
   return (
     <>
       <Nav scrollNav={scrollNav}>
@@ -87,21 +93,25 @@ const Navbar = ({ toggle }) => {
               </NavSearch>
             </NavItem>
             <NavItem>
-              <NavLinks onClick={event => handleAddVehicleDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Add Vehicle Information</NavLinks>
-              <NavItem>
-                <NavLinks onClick={event => handleUpdatePersonalDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Update Personal Details</NavLinks>
-              </NavItem>
+              <NavLinks onClick={event => handleAddVehicleDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Add Vehicle Details</NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks onClick={event => handleUpdatePersonalDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Update Personal Details</NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks onClick={event => handleTrackingDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Track Order Details</NavLinks>
+            </NavItem>
+            <NavItem>
+              <FaMapMarkerAlt />
+              <NavLinks to="/location-details">{location}</NavLinks>
+            </NavItem>
+            <NavItem>
+              <FaShoppingCart style={{ color: 'whitesmoke' }} onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)} size={30} />
+              <NavLinks onClick={event => goToCart(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >View Cart</NavLinks>
             </NavItem>
           </NavMenu>
-          <NavItem>
-            <FaMapMarkerAlt />
-            <NavLinks to="/location-details">{location}</NavLinks>
-          </NavItem>
-          <NavItem>
-            <FaShoppingCart style={{ color: 'whitesmoke' }} onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)} size={30} />
-            <NavLinks onClick={event => goToCart(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >View Cart</NavLinks>
-          </NavItem>
+
         </NavbarContainer>
       </Nav>
     </>
