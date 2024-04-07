@@ -16,11 +16,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -29,8 +31,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ContextConfiguration(classes = {PaymentInfoController.class})
 @ExtendWith(SpringExtension.class)
+@WebMvcTest(PaymentInfoController.class)
 @DisabledInAotMode
 class PaymentInfoControllerTest {
+	
+	 @Autowired
+	 private MockMvc mockMvc;
+	  
     @Autowired
     private PaymentInfoController paymentInfoController;
 
@@ -204,5 +211,20 @@ class PaymentInfoControllerTest {
         actualPerformResult.andExpect(MockMvcResultMatchers.status().is(400))
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
                 .andExpect(MockMvcResultMatchers.content().string("Error during payment execution: An error occurred"));
+    }
+    
+    
+    @Test
+    public void testTrackOrder() throws Exception {
+        // Arrange
+        String trackingId = "123";
+        PaymentInfo paymentInfo = new PaymentInfo(); // Assuming PaymentInfo is a valid object
+        when(paymentInfoService.getByOrderId(trackingId)).thenReturn(paymentInfo);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/payment/trackorderdetails/{trackingId}", trackingId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(paymentInfo)));
     }
 }

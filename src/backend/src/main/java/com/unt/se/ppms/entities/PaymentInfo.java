@@ -1,7 +1,6 @@
 package com.unt.se.ppms.entities;
 
 import jakarta.persistence.Column;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -11,9 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
+
 @ToString
 @Entity
 @Table(name = "payment_info")
@@ -46,12 +43,41 @@ public void setStr(String str) {
     @Column(name = "payment_id")
     private String paymentId;
     
-    
+    public PaymentInfo(String paymentId, String payerId, String paymentStatus, Double amount, String currency) {
+		super();
+		this.paymentId = paymentId;
+		this.payerId = payerId;
+		this.paymentStatus = paymentStatus;
+		this.amount = amount;
+		this.currency = currency;
+	}
 
 	@Column(name="payer_id")
     private String payerId;
+	
+	@Column(name="order_id")
+	private String orderId;
+	
+	@Column(name="order_Status")
+	private String orderStatus;
     
-    @Column(name = "payment_status")
+    public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	@Column(name = "payment_status")
     private String paymentStatus;
     
     public String getPaymentId() {

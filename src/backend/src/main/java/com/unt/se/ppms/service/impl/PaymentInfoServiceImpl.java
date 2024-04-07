@@ -108,4 +108,10 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 		return paymentInfoRepository.findById(paymentId).get();
 	}
 
+	@Override
+	public PaymentInfo getByOrderId(String orderId) {
+		PaymentInfo p=	paymentInfoRepository.getPaymentInfoByOrderId(orderId);
+		return p;
+	}
+
 }
