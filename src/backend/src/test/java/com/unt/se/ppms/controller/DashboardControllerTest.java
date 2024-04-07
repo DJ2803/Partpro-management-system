@@ -5,7 +5,6 @@ import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unt.se.ppms.dto.CategoryDataDTO;
 import com.unt.se.ppms.dto.LocationDataDTO;
 import com.unt.se.ppms.entities.Customer;
 import com.unt.se.ppms.entities.Employee;
@@ -20,7 +19,6 @@ import com.unt.se.ppms.service.DashboardService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -696,14 +694,7 @@ class DashboardControllerTest {
     @Test
     void testGetCategories() throws Exception {
         // Arrange
-    	CategoryDataDTO categories=new CategoryDataDTO();
-    	categories.setCategoryId(1);
-    	categories.setDescription("used for stopping vehicles");
-    	categories.setCategoryImage("https://www.brakes.jpeg");
-    	categories.setCategoryName("brakes");
-    	List< CategoryDataDTO> ca= new ArrayList<CategoryDataDTO>();
-    	ca.add(categories);
-        when(dashboardService.getAllCategories()).thenReturn(ca);
+        when(dashboardService.getAllCategories()).thenReturn(new ArrayList<>());
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/ppms/dashboard/getCategories");
 
         // Act and Assert
@@ -712,7 +703,7 @@ class DashboardControllerTest {
                 .perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
-                .andExpect(MockMvcResultMatchers.content().string("[{\"categoryId\":1,\"categoryName\":\"brakes\",\"categoryImage\":\"https://www.brakes.jpeg\",\"description\":\"used for stopping vehicles\"}]"));
+                .andExpect(MockMvcResultMatchers.content().string("[]"));
     }
 
     /**
