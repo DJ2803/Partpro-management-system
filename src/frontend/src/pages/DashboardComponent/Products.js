@@ -30,7 +30,7 @@ function Products() {
             const modifiedData = response.data.map(item => ({
                 productId: item.productId,
                 productName: item.productName,
-                productImage: generateImage(item.productImage),
+                productImage: base64ToBlob(item.productImage),
                 productDescription: item.productDescription,
                 productPrice: item.productPrice
             }));
@@ -41,16 +41,21 @@ function Products() {
         })
     }
 
-    const  generateImage =(base64Image)=>{
-        const imageData = base64Image.split(",")[1];
-  const decodedImage = atob(imageData);
-  const arrayBuffer = new Uint8Array(decodedImage.length);
-  for (let i = 0; i < decodedImage.length; i++) {
-    arrayBuffer[i] = decodedImage.charCodeAt(i);
-  }
-  const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
-  return URL.createObjectURL(blob);
-    }
+    const base64ToBlob = (base64) => {
+        const binaryString = window.atob(base64.split(',')[1]);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        const imageBlob = new Blob([bytes], { type: 'image/png' })
+        return URL.createObjectURL(imageBlob);
+      };
+
+    
+      
+      
+      
+    
 
     useEffect(() => {
         getData();

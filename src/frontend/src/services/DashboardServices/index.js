@@ -10,6 +10,15 @@ class DashboardServices  {
         return axiosInstance.get(`${PARTPRO_BASE_URL}/dashboard/getProducts`)
     }
 
+    getProductDetails(productId){
+      return axiosInstance.get(`${PARTPRO_BASE_URL}/dashboard/getProductDetails`,{
+        params:{
+          productId:productId
+        }
+      })
+    }
+    
+
   getAllCategories(){
     return axiosInstance.get(`${PARTPRO_BASE_URL}/dashboard/getCategories`)
   }
