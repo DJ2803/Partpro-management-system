@@ -10,6 +10,7 @@ import PaymentServices from '../../services/PaymentServices';
 const CartComponent = () => {
   const [state, dispatch] = useContext(GlobalStateContext);
   const [cart, setCart] = useState({
+    prodIds:[],
     totalAmount :''
 });
 console.log(state.cart)
@@ -28,11 +29,16 @@ console.log(state.cart)
   const calculateTotal = () => {
     return state.cart.reduce((acc, item) => acc + item.productPrice * item.quantity, 0);
   };
+  const getProductId =()=>{
+    return state.cart.map(item => item.id);
+  }
   const handlePayment = (event) => {
     const totalAmount=calculateTotal().toFixed(2)
+    const ids=getProductId()
     event.preventDefault()
     setCart(prevCart => ({
       ...prevCart,
+      prodIds: ids,
       totalAmount: totalAmount
     }));
     const response =  PaymentServices.createPayment(state.userData.userId, cart).then(resp => {
