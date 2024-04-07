@@ -11,9 +11,9 @@ class PaymentServices  {
         return axiosInstance.post(`${PARTPRO_BASE_URL}/payment/${userId}/create`,cart)
     }
 
-   
-
-
+    trackOrder(orderId) {
+        return axiosInstance.get(`${PARTPRO_BASE_URL}/payment/trackorderdetails/${orderId}`)
+    }
 
 }
 
