@@ -24,4 +24,6 @@ public interface PaymentInfoService {
 	public String addOrUpdatePayment(PaymentInfo paymentInfo);
 	
 	public PaymentInfo getByPaymentId(String paymentId);
+	
+	public PaymentInfo getByOrderId(String orderId);
 }

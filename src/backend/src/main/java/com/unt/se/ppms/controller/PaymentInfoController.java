@@ -1,7 +1,10 @@
 package com.unt.se.ppms.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,9 +35,11 @@ public class PaymentInfoController {
 	
 	@Autowired
     private PaymentInfoRepository paymentInfoRepository;
-
+	public static List<Long> productIds = new ArrayList<>();
 	@PostMapping("/{userId}/create")
     public ResponseEntity<?> createPayment(@RequestBody CartDto cart, @PathVariable long userId) {
+		productIds=cart.getProdIds();
+		System.out.println("ids"+productIds);
         try {
             Payment payment = paymentInfoService.createPayment(
             		cart.totalAmount,
@@ -63,7 +68,13 @@ public class PaymentInfoController {
 	@GetMapping("/{userId}/success")
     public ResponseEntity<?> successPay(@RequestParam("paymentId") String paymentId, 
                                         @RequestParam("PayerID") String payerId, @PathVariable long userId) {
+		String productIdsString = productIds.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+		System.out.println("ids"+productIdsString);
         try {
+        	System.out.println("ids"+productIds);
+  
             Payment payment = paymentInfoService.executePayment(paymentId, payerId);
             if (payment.getState().equals("approved")) {
             	String currency = payment.getTransactions().get(0).getAmount().getCurrency();
@@ -77,11 +88,11 @@ public class PaymentInfoController {
                 paymentInfo.setAmount(Double.parseDouble(totalAmount));
                 paymentInfo.setCurrency(currency);
                 paymentInfo.setPaymentStatus(PaymentStatus.SUCCESS.getStr());
-
+                paymentInfo.setOrderId(paymentId);
+                paymentInfo.setOrderStatus("Pending");
                 paymentInfoService.addOrUpdatePayment(paymentInfo);
-                String redirectUrl = "http://localhost:3000/payment-success?paymentId=" + paymentId + "&status=success";
+                String redirectUrl = "http://localhost:3000/payment-success?orderId=" + paymentId + "&orderStatus=Pending" + "&productIds=" + productIdsString;
                 return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(redirectUrl)).build();
-               // return ResponseEntity.ok("Payment successful. ID: " + paymentId);
             } else {
                 return ResponseEntity.unprocessableEntity().body("Payment execution failed. State: " + payment.getState());
             }
@@ -112,6 +123,20 @@ public class PaymentInfoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("An error occurred while cancelling the payment");
         }
+    }
+    
+    @GetMapping("/trackorderdetails/{trackingId}")
+    public ResponseEntity<PaymentInfo> trackOrder(@PathVariable String trackingId){
+    	try {
+    		PaymentInfo p=paymentInfoService.getByOrderId(trackingId);	
+    		return new ResponseEntity<PaymentInfo>(p, HttpStatus.OK); 
+    	}
+    	catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
+        }
+		
     }
 
 }
