@@ -11,7 +11,9 @@ import { Button } from "../../components/ButtonElement";
 import {
   FeaturesSec
 } from "../../components/DetaisSection/Features.elements";
+import EmployeeServices from "../../services/EmployeeServices"
 import {GlobalStateContext} from  '../../GlobalStateContext'
+
 
 const ProductDetailsComponent = () => {
   const [state, dispatch] = useContext(GlobalStateContext);
@@ -19,6 +21,7 @@ const ProductDetailsComponent = () => {
   const product = location.state.product;
   const [hover, setHover] = useState(false);
   const handleCart=(event)=>{
+    console.log(event)
     const existingProduct = state.cart.find(item => item.id === product.productId);
     if (existingProduct) {
       dispatch({ 
@@ -36,6 +39,33 @@ const ProductDetailsComponent = () => {
     };
     dispatch({ type: 'ADD_TO_CART', payload: cartdata});
   }
+}
+
+const handlePickUpCart=(event)=>{
+  console.log(event)
+  EmployeeServices.findAssistantEmployee().then(response => {
+    console.log(response.data)
+    dispatch({ type: 'EMPLOYEE_DATA', payload: response.data});
+}).catch(error => {
+    console.log(error)
+})
+  const existingProduct = state.cart.find(item => item.id === product.productId);
+  if (existingProduct) {
+    dispatch({ 
+      type: 'INCREASE_QUANTITY', 
+      payload: product.productId
+    });
+  } else {
+  const cartdata={
+    id: product.productId,
+    productImage:product.productImage,
+    productPrice:product.productPrice,
+    productDescription: product.productDescription,
+    productName: product.productName,
+    quantity: 1
+  };
+  dispatch({ type: 'ADD_TO_CART', payload: cartdata});
+}
 }
   const onHover = () => {
     setHover(!hover);
@@ -75,7 +105,7 @@ const ProductDetailsComponent = () => {
                 </HeroBtnWrapper>
                 <HeroBtnWrapper style={{ display: "inline-block" }}>
                   <Button
-                   onClick={(event) => handleCart(event)}
+                   onClick={(event) => handlePickUpCart(event)}
                     onMouseEnter={onHover}
                     onMouseLeave={onHover}
                     primary="true"

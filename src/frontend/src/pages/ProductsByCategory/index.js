@@ -13,7 +13,7 @@ import {
     ArrowForward,
     ArrowRight,
   } from "../../components/HeroSection/HeroElements"
-
+import EmployeeServices from "../../services/EmployeeServices"
 const ProductsByCategory = () => {
     const [state, dispatch] = useContext(GlobalStateContext);
     const location = useLocation();
@@ -61,7 +61,31 @@ const ProductsByCategory = () => {
         dispatch({ type: 'ADD_TO_CART', payload: cartdata});
       }
     }
-
+    const handlePickUpCart=(event,item)=>{
+        EmployeeServices.findAssistantEmployee().then(response => {
+            console.log(response.data)
+            dispatch({ type: 'EMPLOYEE_DATA', payload: response.data});
+        }).catch(error => {
+            console.log(error)
+        })
+        const existingProduct = state.cart.find(cartItem => cartItem.id === item.productId);
+        if (existingProduct) {
+          dispatch({ 
+            type: 'INCREASE_QUANTITY', 
+            payload: item.productId
+          });
+        } else {
+        const cartdata={
+          id: item.productId,
+          productImage:item.productImage,
+          productPrice:item.productPrice,
+          productDescription: item.productDescription,
+          productName: item.productName,
+          quantity: 1
+        };
+        dispatch({ type: 'ADD_TO_CART', payload: cartdata});
+      }
+    }
     const generateImage = (base64Image) => {
         const imageData = base64Image.split(",")[1];
         const decodedImage = atob(imageData);
@@ -105,7 +129,7 @@ const ProductsByCategory = () => {
                                 </HeroBtnWrapper>
                                 <HeroBtnWrapper style={{ display: "inline-block" }}>
                                     <Button
-                                        onClick={(event) => handleCart(event)}
+                                        onClick={(event) => handlePickUpCart(event)}
                                         onMouseEnter={onHover}
                                         onMouseLeave={onHover}
                                         primary="true"
