@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.unt.se.ppms.dto.UserData;
 import com.unt.se.ppms.entities.Customer;
+import com.unt.se.ppms.entities.Employee;
 import com.unt.se.ppms.entities.OneTimePasscode;
 import com.unt.se.ppms.entities.User;
 import com.unt.se.ppms.exceptions.InvalidLoginCredentialsException;
@@ -40,6 +41,8 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private OneTimePasscodeRepository otpRepository;
 	
+	
+	
 	@Autowired
     private JavaMailSender javaMailSender;
 	
@@ -51,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
 				return "Username already exists";
 			}else if(loginRepository.existsByEmailId(user.getEmailId())) {
 				return "Email ID already exists";
-			}else {
+			}else if(user.getTypeOfUser().equalsIgnoreCase("customer")){
 				user.setTypeOfUser("customer");
 				loginRepository.save(user);
 				otpRepository.save(new OneTimePasscode(user.getUserId(),0,LocalDateTime.now(),user));
@@ -59,6 +62,15 @@ public class LoginServiceImpl implements LoginService {
 							user.getEmailId(),user.getGender(),user.getMobileNumber(),user.getZipcode(),user);
 				customerRepository.save(customer);
 				return "User added successfully";
+			}
+			else {
+				user.setTypeOfUser("employee");
+				loginRepository.save(user);
+				otpRepository.save(new OneTimePasscode(user.getUserId(),0,LocalDateTime.now(),user));
+				Employee employee = new Employee(user.getUserId(),user.getUserName(),user.getPassword(),user.getFirstName()+" "+user.getLastName(),
+						user.getEmailId(),user.getGender(),user.getMobileNumber(), user);
+				employeeRepository.save(employee);
+				return "User added successfully";	
 			}
 			
 		}catch(Exception e) {

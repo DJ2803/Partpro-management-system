@@ -651,14 +651,14 @@ class LoginControllerTest {
         userData.setLastName("Doe");
         userData.setMessage("Not all who wander are lost");
         userData.setMobileNumber(1L);
-        userData.setPassword("jan1234");
+        userData.setPassword("iloveyou");
         userData.setTypeOfUser("Type Of User");
         userData.setUserId(1);
         userData.setUserName("janedoe");
         userData.setZipcode(1L);
         when(loginService.loginUserFirstStep(Mockito.<String>any(), Mockito.<String>any())).thenReturn(userData);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/ppms/user/login/{username}/{password}",
-                "janedoe", "jan1234");
+                "janedoe", "iloveyou");
 
         // Act and Assert
         MockMvcBuilders.standaloneSetup(loginController)
@@ -668,7 +668,7 @@ class LoginControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content()
                         .string(
-                                "{\"userId\":1,\"userName\":\"janedoe\",\"password\":\"jan1234\",\"emailId\":\"42\",\"mobileNumber\":1,\"zipcode\""
+                                "{\"userId\":1,\"userName\":\"janedoe\",\"password\":\"iloveyou\",\"emailId\":\"42\",\"mobileNumber\":1,\"zipcode\""
                                         + ":1,\"typeOfUser\":\"Type Of User\",\"firstName\":\"Jane\",\"lastName\":\"Doe\",\"message\":\"Not all who wander"
                                         + " are lost\"}"));
     }
