@@ -289,39 +289,23 @@ public class Employee {
 
 
 	
-	
-	public Employee(int employeeId, String employeeName,
-			@Size(min = 8, message = "Password should contain atleast 8 characters") String password, String emailId,
-			String userName, User user) {
+	public Employee(int employeeId, String username,
+			@Size(min = 8, message = "Password should contain atleast 8 characters") String password, String fullName,
+			String emailId, String gender,long mobileNumber, User user) {
 		super();
 		this.employeeId = employeeId;
-		this.employeeName = employeeName;
+		this.userName = username;
 		this.password = password;
+		this.employeeName = fullName;
 		this.emailId = emailId;
-		this.userName = userName;
-		this.user = user;
-	}
-
-
-
-
-	public Employee(int employeeId, String employeeName,
-			@Size(min = 8, message = "Password should contain atleast 8 characters") String password,
-			String employeeType, String emailId, LocalDate dateOfHire, String gender, long mobileNumber,
-			User user, Set<Location> locations, List<OnlineSales> onlineSales) {
-		super();
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-		this.password = password;
-		this.employeeType = employeeType;
-		this.emailId = emailId;
-		this.dateOfHire = dateOfHire;
 		this.gender = gender;
 		this.mobileNumber = mobileNumber;
-		this.user = user;
-		this.locations = locations;
-		this.onlineSales = onlineSales;
+		this.user=user;
 	}
+
+
+
+
 
 
 
