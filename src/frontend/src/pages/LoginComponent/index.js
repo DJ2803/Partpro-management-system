@@ -50,7 +50,14 @@ export default function LoginComponent({ lightTopLine }) {
     const otpResponse = await LoginServices.verifyOtp(state.userData.userId, otp).then(
       resp => { 
         setShowOtpModal(false);
-        navigate("/dashboard");
+        const type=state.userData.typeOfUser.toLowerCase()
+        if(type === "customer"){
+          navigate("/dashboard");
+        }
+        if(type === "employee"){
+          navigate("/employee-dashboard")
+        }
+        
       }
     ).catch(err => {
       console.log(err)
