@@ -86,7 +86,7 @@ const Navbar = ({ toggle }) => {
           </MobileIcon>
           <NavMenu>
             {
-              type === 'owner' && (
+              type === 'store_owner' && (
                 <NavItem>
                   <NavLinks onClick={event => handleProducts(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Products</NavLinks>
                 </NavItem>
@@ -96,7 +96,7 @@ const Navbar = ({ toggle }) => {
               <NavLinks onClick={event => handleInventory(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Inventory</NavLinks>
             </NavItem>
             {
-              type === 'owner' && (
+              type === 'store_owner' && (
                 <NavItem>
                   <NavLinks onClick={event => handleUpdatePersonalDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Online Sales</NavLinks>
                 </NavItem>)

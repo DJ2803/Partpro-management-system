@@ -1,0 +1,24 @@
+Submitted Documents in GitHub for deliverable 4 are
+
+partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+partpro-management-system/Project_Reports/PartProManagementSystem-del-4.pdf
+partpro-management-system/Planning/Phase2UseCaseDiagram.jpg
+partpro-management-system/Planning/Phase2ErrorUseCaseDiagram.jpg
+partpro-management-system/Planning/Phase2SequenceDiagram.png
+partpro-management-system/Planning/Phase2ClassDiagram.jpg
+partpro-management-system/src/backend/
+partpro-management-system/src/frontend/
+
+
+Updated  PartProMeetingMinutes for Deliverable 4: partpro-management-system/Meeting_minutes/PartProMeetingMinutes.md
+
+Uploaded Deliverable 4 documentation : partpro-management-system/Project_Reports/PartProManagementSystem-del-4.pdf
+
+Added UseCaseDiagram, ErrorUseCaseDiagram, SequenceDiagram and ClassDiagram which we have designed as part of Deliverable 4: 
+partpro-management-system/Planning/Phase2UseCaseDiagram.jpg
+partpro-management-system/Planning/Phase2ErrorUseCaseDiagram.jpg
+partpro-management-system/Planning/Phase2SequenceDiagram.png
+partpro-management-system/Planning/Phase2ClassDiagram.jpg
+
+Implemented development phase 2 features for back end: partpro-management-system/src/backend/
+Implemented development phase 2 features for front end: partpro-management-system/src/frontend/
