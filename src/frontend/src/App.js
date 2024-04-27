@@ -21,7 +21,9 @@ import PostProductsComponent from "./pages/PostProductsComponent";
 import UpdateProductComponent from "./pages/UpdateProductcomponent";
 import UpdateInventoryComponent from "./pages/UpdateInventoryComponent";
 import OrderTrackingComponent from "./pages/OrderTrackingComponent";
-
+import ManageFeedbackComponent from "./pages/ManageFeedbackComponent";
+import ManageInventoryLevelsComponent from "./pages/ManageInventoryLevelsComponent";
+import ManageOnlineSalesComponent from "./pages/ManageOnlineSalesComponent";
 function App() {
   return (
     <>
@@ -44,6 +46,9 @@ function App() {
             <Route path='/update-product/:id' element={< UpdateProductComponent/>} exact />
             <Route path='/manage-inventory/:id' element={< UpdateInventoryComponent/>} exact />
             <Route path='/order-tracking/:id' element={< OrderTrackingComponent/>} exact />
+            <Route path='/manage-feedback/:id' element={< ManageFeedbackComponent/>} exact />
+            <Route path='/manage-stockstatus/:id' element={< ManageInventoryLevelsComponent/>} exact />
+            <Route path='/manage-onlinesales/:id' element={< ManageOnlineSalesComponent/>} exact />
             <Route path='/payment-success/' element={< OrderDetailsComponent/>} exact />
           </Routes>
         </Router>
