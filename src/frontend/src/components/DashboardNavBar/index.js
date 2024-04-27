@@ -73,6 +73,12 @@ const Navbar = ({ toggle }) => {
     const id = state.userData.userId;
     navigate(`/order-tracking/${id}`);
   }
+
+  const handleFeedback =(e)=>{
+    e.preventDefault()
+    const id =state.userData.userId;
+    navigate(`/manage-feedback/${id}`)
+  }
   return (
     <>
       <Nav scrollNav={scrollNav}>
@@ -100,6 +106,9 @@ const Navbar = ({ toggle }) => {
             </NavItem>
             <NavItem>
               <NavLinks onClick={event => handleTrackingDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Track Order Details</NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks onClick={event => handleFeedback(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Add Feedback</NavLinks>
             </NavItem>
             <NavItem>
               <FaMapMarkerAlt />

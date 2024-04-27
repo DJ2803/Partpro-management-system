@@ -61,16 +61,22 @@ const Navbar = ({ toggle }) => {
     navigate(`/manage-products/${id}`);
   }
 
-  const handleUpdatePersonalDetails = (e) => {
+  const handleSales = (e) => {
     e.preventDefault()
     const id = state.userData.userId;
-    navigate(`/updatepersonaldetails/${id}`);
+    navigate(`/manage-onlinesales/${id}`);
   }
 
   const handleInventory = (e) => {
     e.preventDefault()
     const id = state.userData.userId;
     navigate(`/manage-inventory/${id}`);
+  }
+
+  const handleStockStatus =(e) => {
+    e.preventDefault()
+    const id = state.userData.userId;
+    navigate(`/manage-stockstatus/${id}`);
   }
   return (
     <>
@@ -95,10 +101,13 @@ const Navbar = ({ toggle }) => {
             <NavItem>
               <NavLinks onClick={event => handleInventory(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Inventory</NavLinks>
             </NavItem>
+            <NavItem>
+              <NavLinks onClick={event => handleStockStatus(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Update Inventory By Stock Status</NavLinks>
+            </NavItem>
             {
               type === 'store_owner' && (
                 <NavItem>
-                  <NavLinks onClick={event => handleUpdatePersonalDetails(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Online Sales</NavLinks>
+                  <NavLinks onClick={event => handleSales(event)} smooth={true} duration={500} spy={true} exact='true' offset={-80} >Manage Online Sales</NavLinks>
                 </NavItem>)
             }
 
