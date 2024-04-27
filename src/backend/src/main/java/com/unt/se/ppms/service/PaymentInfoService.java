@@ -1,7 +1,11 @@
 package com.unt.se.ppms.service;
 
+import java.util.List;
+
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
+import com.unt.se.ppms.dto.OnlineSalesDTO;
+import com.unt.se.ppms.dto.SalesDTO;
 import com.unt.se.ppms.entities.PaymentInfo;
 
 public interface PaymentInfoService {
@@ -26,4 +30,8 @@ public interface PaymentInfoService {
 	public PaymentInfo getByPaymentId(String paymentId);
 	
 	public PaymentInfo getByOrderId(String orderId);
+
+	public String manageOnlineSales(SalesDTO dto);
+	
+	public List<OnlineSalesDTO>viewOnlineSales();
 }

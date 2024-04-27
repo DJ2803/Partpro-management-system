@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.unt.se.ppms.entities.Cart;
 import com.unt.se.ppms.entities.Cart.OrderStatus;
 import com.unt.se.ppms.entities.Customer;
+import com.unt.se.ppms.entities.Feedback;
 import com.unt.se.ppms.exceptions.CustomerNotFoundException;
 import com.unt.se.ppms.repository.CartRepository;
 import com.unt.se.ppms.repository.CustomerRepository;
+import com.unt.se.ppms.repository.FeedbackRepository;
 import com.unt.se.ppms.repository.ProductsRepository;
 import com.unt.se.ppms.service.CustomerService;
 
@@ -28,6 +30,11 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private ProductsRepository productsRepository;
+	
+	@Autowired
+	private FeedbackRepository feedbackRepository;
+	
+	
 	
 	public String updateCustomer(int userId,Customer customer) throws CustomerNotFoundException {
 		try{
@@ -96,6 +103,28 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Cart> viewProductsInCart(long userId) {
 		return cartRepository.getAllProductsInCart(userId, OrderStatus.NOT_ORDERED);
+	}
+
+	@Override
+	public String addOrUpdateFeedback(long productID, float rating) {
+		Feedback feedback=feedbackRepository.getFeedbackByProductID(productID);
+		if(feedback!=null) {
+			int cnt= feedback.getRatingsCount();
+			int updatedcnt= cnt+1;
+			float r= (feedback.getRating()*cnt + rating) /updatedcnt;
+			feedback.setRating(r);
+			feedback.setRatingsCount(updatedcnt);
+			feedbackRepository.save(feedback);
+		}
+		else
+		{
+			Feedback feedback1= new Feedback();
+			feedback1.setProductID(productID);
+			feedback1.setRating(rating);
+			feedback1.setRatingsCount(1);
+			feedbackRepository.save(feedback1);
+		}
+		return "Feedback changed";
 	}
 
 

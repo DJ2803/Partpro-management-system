@@ -1,5 +1,6 @@
 package com.unt.se.ppms.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.unt.se.ppms.dto.EmployeeDTO;
 import com.unt.se.ppms.dto.InventoryDTO;
+import com.unt.se.ppms.dto.InventoryStatusDTO;
 import com.unt.se.ppms.entities.Employee;
 import com.unt.se.ppms.entities.Inventory;
 import com.unt.se.ppms.entities.Products;
@@ -52,6 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         if (inventory != null) {
             // Update existing product quantity
             inventory.setProductQuantity(inventory.getProductQuantity() + quantity);
+            inventory.setStockStatus(true);
             inventoryRepository.save(inventory);
         } else {
             // Create new inventory entry
@@ -104,6 +107,25 @@ public class EmployeeServiceImpl implements EmployeeService{
 	dto.setPassword(emp.getPassword()); 
 	dto.setMobileNo(emp.getMobileNumber());
 	return dto;
+	}
+
+	@Override
+	public List<InventoryStatusDTO> getInventoryDetailsByStockStatus() {
+		List<Inventory>li=inventoryRepository.findAll();
+		List<InventoryStatusDTO>list= new ArrayList<InventoryStatusDTO>();
+	    for(int i=0;i<li.size();i++) {
+	    	if(!li.get(i).isStockStatus()) {
+	    		InventoryStatusDTO dto= new InventoryStatusDTO();
+	    		dto.setStatus(li.get(i).isStockStatus());
+	    		dto.setProductId(li.get(i).getProducts().getProductId());
+	    		dto.setProductImage(li.get(i).getProducts().getProductImage());
+	    		dto.setProductDescription(li.get(i).getProducts().getProductDescription());
+	    		dto.setProductName(li.get(i).getProducts().getProductName());
+	    		dto.setProductPrice(li.get(i).getProducts().getProductPrice());
+	    		list.add(dto);
+	    	}
+	    }
+		return list;
 	}
 
 }

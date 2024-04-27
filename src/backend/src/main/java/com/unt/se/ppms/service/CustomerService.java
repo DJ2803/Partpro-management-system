@@ -19,6 +19,8 @@ public interface CustomerService {
 	public List<Cart> viewOrderedProducts(long userId);
 	
 	public List<Cart> viewProductsInCart(long userId);
+	
+	public String addOrUpdateFeedback(long productID, float rating);
 
 
 }
