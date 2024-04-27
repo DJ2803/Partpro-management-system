@@ -44,6 +44,7 @@ public class Inventory {
 	public long getProductQuantity() {
 		return productQuantity;
 	}
+	
 
 	public void setProductQuantity(long productQuantity) {
 		this.productQuantity = productQuantity;

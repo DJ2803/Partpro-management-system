@@ -38,4 +38,44 @@ public class OnlineSales {
     @JoinColumn(name = "product_id")
     private Products products;
 
+	public long getSaleId() {
+		return saleId;
+	}
+
+	public void setSaleId(long saleId) {
+		this.saleId = saleId;
+	}
+
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Employee getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(Employee employer) {
+		this.employer = employer;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
 }
