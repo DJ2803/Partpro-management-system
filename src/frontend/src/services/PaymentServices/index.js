@@ -15,6 +15,10 @@ class PaymentServices  {
         return axiosInstance.get(`${PARTPRO_BASE_URL}/payment/trackorderdetails/${orderId}`)
     }
 
+    manageOnlineSales() {
+        return axiosInstance.get(`${PARTPRO_BASE_URL}/payment/getOnlineSales`)
+    }
+
 }
 
 export default new PaymentServices();

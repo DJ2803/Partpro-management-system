@@ -29,6 +29,12 @@ class EmployeeServices  {
       })
 }
 
+
+
+getInventoryByStatus(){
+    return axiosInstance.get(`${PARTPRO_BASE_URL}/employee/getInventoryByStatus`)
+}
+
 findEmployeeByUserName(userName){
     return axiosInstance.get(`${PARTPRO_BASE_URL}/employee/findByUserName`,{
         params:{

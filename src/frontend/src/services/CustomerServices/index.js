@@ -5,13 +5,21 @@ const PARTPRO_BASE_URL = 'http://localhost:8080/ppms';
 
 
 
-class CustomerServices  {
+class CustomerServices {
 
     updatePersonalDetails(userId, customer) {
-        return axiosInstance.put(`${PARTPRO_BASE_URL}/customer/update/${userId}`,customer)
+        return axiosInstance.put(`${PARTPRO_BASE_URL}/customer/update/${userId}`, customer)
     }
 
-  
+    manageFeedback(userId, productId, rating) {
+        return axiosInstance.post(`${PARTPRO_BASE_URL}/customer/${userId}/addorUpdateFeedback`,null,{
+            params:{
+                productId:productId,
+                rating:rating
+            }
+          })
+    }
+
 
 }
 
