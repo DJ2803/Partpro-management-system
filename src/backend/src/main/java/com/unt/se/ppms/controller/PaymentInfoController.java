@@ -21,6 +21,8 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import com.unt.se.ppms.dto.CartDto;
+import com.unt.se.ppms.dto.OnlineSalesDTO;
+import com.unt.se.ppms.dto.SalesDTO;
 import com.unt.se.ppms.entities.PaymentInfo;
 import com.unt.se.ppms.entities.PaymentInfo.PaymentStatus;
 import com.unt.se.ppms.repository.PaymentInfoRepository;
@@ -91,6 +93,11 @@ public class PaymentInfoController {
                 paymentInfo.setOrderId(paymentId);
                 paymentInfo.setOrderStatus("Pending");
                 paymentInfoService.addOrUpdatePayment(paymentInfo);
+                SalesDTO dto = new SalesDTO();
+                dto.setCustomerID(userId);
+                dto.setProductIDString(productIdsString);
+                dto.setTotalAmount(Double.parseDouble(totalAmount));
+                paymentInfoService.manageOnlineSales(dto);
                 String redirectUrl = "http://localhost:3000/payment-success?orderId=" + paymentId + "&orderStatus=Pending" + "&productIds=" + productIdsString;
                 return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(redirectUrl)).build();
             } else {
@@ -130,6 +137,38 @@ public class PaymentInfoController {
     	try {
     		PaymentInfo p=paymentInfoService.getByOrderId(trackingId);	
     		return new ResponseEntity<PaymentInfo>(p, HttpStatus.OK); 
+    	}
+    	catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
+        }
+		
+    }
+    
+    @PostMapping("/saveorderdetails/{userId}")
+    public ResponseEntity<String> manageSales(@PathVariable long userId){
+    	try {
+    		  SalesDTO dto = new SalesDTO();
+              dto.setCustomerID(userId);
+              dto.setProductIDString("1,2");
+              dto.setTotalAmount(Double.parseDouble("12.56"));
+    		String str=paymentInfoService.manageOnlineSales(dto);	
+    		return new ResponseEntity<String>(str, HttpStatus.OK); 
+    	}
+    	catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(null);
+        }
+		
+    }
+    
+    @GetMapping("/getOnlineSales")
+    public ResponseEntity<List<OnlineSalesDTO>> viewSales(){
+    	try {
+    		List<OnlineSalesDTO> list= paymentInfoService.viewOnlineSales();
+    		return new ResponseEntity<List<OnlineSalesDTO>>(list, HttpStatus.OK); 
     	}
     	catch (Exception e) {
             e.printStackTrace();

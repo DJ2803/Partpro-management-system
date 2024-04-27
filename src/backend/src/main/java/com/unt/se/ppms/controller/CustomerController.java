@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unt.se.ppms.entities.Cart;
@@ -26,6 +27,9 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	
+	
+	
 	@PutMapping("/update/{userId}")
 	public ResponseEntity<String> updateCustomerDetails(@PathVariable  int userId, @RequestBody Customer customer) throws CustomerNotFoundException{
 		try {
@@ -36,6 +40,18 @@ public class CustomerController {
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+	}
+	
+	@PostMapping("/{userId}/addorUpdateFeedback")
+	public ResponseEntity<String> addorUpdateFeedback(@RequestParam Long productId, @RequestParam float rating){
+		try {
+			String str = customerService.addOrUpdateFeedback(productId, rating);
+			return new ResponseEntity<>(str, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		
 	}
 	
 	@PostMapping("/{userId}/cart/addproduct")
