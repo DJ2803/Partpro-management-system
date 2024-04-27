@@ -14,6 +14,47 @@ export const FeaturesContainer = styled.div`
     height: 450px;
   }
 `;
+export const StyledTable = styled.table`
+  width: 125%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  thead tr th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    color: #333; 
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #ffffff;
+  }
+
+  tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+ 
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+`;
+
 
 export const FeaturesSec = styled.div`
   color: #fff;
@@ -84,4 +125,5 @@ export const Img = styled.img`
 export const Table = styled.table`
   border:0;
 margin-top:150px;
+margin-left:-300px
 `;
