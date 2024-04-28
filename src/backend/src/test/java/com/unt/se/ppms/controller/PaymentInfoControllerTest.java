@@ -289,4 +289,28 @@ class PaymentInfoControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isInternalServerError());
     }
+    
+    
+    
+    @Test
+    void testCompletePaymentAndTrackOrder() throws Exception {
+        // Step 1: Simulate a successful payment
+        when(paymentInfoService.executePayment(Mockito.anyString(), Mockito.anyString())).thenReturn(new Payment());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/payment/{userId}/success", "userIdExample")
+                .param("PayerID", "payerExample")
+                .param("paymentId", "paymentExample"));
+
+        // Step 2: Track the order after successful payment
+        String trackingId = "123";  
+        PaymentInfo paymentInfo = new PaymentInfo(); 
+        when(paymentInfoService.getByOrderId(trackingId)).thenReturn(paymentInfo);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/payment/trackorderdetails/{trackingId}", trackingId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(paymentInfo)));
+
+ 
+    }
 }

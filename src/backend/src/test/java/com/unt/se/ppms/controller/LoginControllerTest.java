@@ -1,9 +1,13 @@
 package com.unt.se.ppms.controller;
+import org.springframework.http.MediaType;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.when;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unt.se.ppms.dto.SalesDTO;
 import com.unt.se.ppms.dto.UserData;
 import com.unt.se.ppms.entities.Customer;
 import com.unt.se.ppms.entities.Employee;
@@ -19,10 +23,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -30,6 +36,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ContextConfiguration(classes = {LoginController.class})
 @ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = LoginController.class)
 @DisabledInAotMode
 class LoginControllerTest {
     @Autowired
@@ -37,6 +44,12 @@ class LoginControllerTest {
 
     @MockBean
     private LoginService loginService;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
+    
+    @Autowired
+    private MockMvc mockMvc;
 
     /**
      * Method under test: {@link LoginController#changePassword(String, String)}
@@ -690,5 +703,32 @@ class LoginControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
                 .andExpect(MockMvcResultMatchers.content().string("Login User Second Step"));
+    }
+    
+    @Test
+    public void testCompleteAuthenticationFlow() throws Exception {
+        // Step 1: Signup
+        User newUser = new User(0, "newuser", "newuser@example.com", "password123", null, null, null, 0, 0, null);
+        UserData data = new UserData();
+        data.setEmailId("newuser@example.com");
+        data.setPassword("password123");
+        data.setUserName("newuser");
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/user/signup")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content( objectMapper.writeValueAsString(newUser)))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        
+        // Step 2: Login First Step
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/user/login/{username}/{password}", "newuser", "password123"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        // Assuming a mechanism to fetch or mock the OTP value here
+        long otp = 123456; // Example OTP value
+
+        // Step 3: Login Second Step
+        int userId = 1; // Example user ID, this should be fetched or mocked based on the actual response
+        when(loginService.loginUserSecondStep(userId,otp)).thenReturn("Login successful");
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/user/login/{id}/verifyotp/{otp}", userId, otp))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Login successful"));
     }
 }

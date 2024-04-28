@@ -158,7 +158,54 @@ class EmployeeControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(employeeDTO)));
     }
+    
+    @Test
+    public void testInventoryProductAssistantWorkflow() throws Exception {
+        // Step 1: Check Inventory Status
+        InventoryStatusDTO inventory1 = new InventoryStatusDTO("Item1", "Available", 10);
+        InventoryStatusDTO inventory2 = new InventoryStatusDTO("Item2", "Low Stock", 2);
+        List<InventoryStatusDTO> inventoryList = Arrays.asList(inventory1, inventory2);
+        when(employeeService.getInventoryDetailsByStockStatus()).thenReturn(inventoryList);
 
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/employee/getInventoryByStatus")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(inventoryList)));
+                
+        
+    
+    
+    // Step 2: Add/ Update Product in Inventory
+
+ // Step 2: Add or Update a Product
+    Long productId = 1L;
+    Integer quantity = 10;
+    String expectedResponse = "Product added or updated successfully";
+    when(employeeService.addOrUpdateProduct(productId, quantity)).thenReturn(expectedResponse);
+
+    // Act & Assert
+    mockMvc.perform(MockMvcRequestBuilders.post("/ppms/employee/addOrUpdateProduct")
+            .param("productId", productId.toString())
+            .param("quantity", quantity.toString())
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().string(expectedResponse));
+    
+    // Step 3:  Assist Customers 
+    // Arrange
+    EmployeeDTO employeeDTO = new EmployeeDTO(); // Setup EmployeeDTO with expected data
+    when(employeeService.findAssistantEmployee()).thenReturn(employeeDTO);
+    employeeDTO.setDesignation("assistant_employee");
+    // Act & Assert
+    mockMvc.perform(MockMvcRequestBuilders.get("/ppms/employee/getAssistant")
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(employeeDTO)));
+    
+    }
+    
+  
 	
 	
 }
