@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.unt.se.ppms.entities.Cart;
 import com.unt.se.ppms.entities.Customer;
+import com.unt.se.ppms.entities.Feedback;
 import com.unt.se.ppms.exceptions.CustomerNotFoundException;
 
 public interface CustomerService {
@@ -21,6 +22,6 @@ public interface CustomerService {
 	public List<Cart> viewProductsInCart(long userId);
 	
 	public String addOrUpdateFeedback(long productID, float rating);
-
-
+	
+	public Feedback viewFeedback(long productID);
 }

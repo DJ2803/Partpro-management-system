@@ -22,6 +22,7 @@ import com.unt.se.ppms.entities.User;
 import com.unt.se.ppms.exceptions.CustomerNotFoundException;
 import com.unt.se.ppms.repository.CartRepository;
 import com.unt.se.ppms.repository.CustomerRepository;
+import com.unt.se.ppms.repository.FeedbackRepository;
 import com.unt.se.ppms.repository.ProductsRepository;
 
 import java.time.LocalDate;
@@ -53,6 +54,9 @@ class CustomerServiceImplTest {
 
     @MockBean
     private ProductsRepository productsRepository;
+    
+    @MockBean
+    private FeedbackRepository feedbackRepository;
 
     /**
      * Method under test: {@link CustomerServiceImpl#updateCustomer(int, Customer)}

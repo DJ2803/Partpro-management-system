@@ -1,16 +1,21 @@
 package com.unt.se.ppms.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
+import com.unt.se.ppms.dto.OnlineSalesDTO;
+import com.unt.se.ppms.dto.SalesDTO;
 import com.unt.se.ppms.entities.PaymentInfo;
 import com.unt.se.ppms.repository.PaymentInfoRepository;
 import com.unt.se.ppms.service.PaymentInfoService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -226,5 +231,62 @@ class PaymentInfoControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(paymentInfo)));
+    }
+    
+    @Test
+    public void testViewOnlineSales() throws Exception {
+        // Arrange
+        OnlineSalesDTO sale1 = new OnlineSalesDTO("Product1", 150, 3);
+        OnlineSalesDTO sale2 = new OnlineSalesDTO("Product2", 200, 5);
+       List< OnlineSalesDTO> salesList = Arrays.asList(sale1, sale2);
+
+        when(paymentInfoService.viewOnlineSales()).thenReturn(salesList);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/payment/getOnlineSales")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(salesList)));
+    
+    }
+    
+    @Test
+    public void testViewOnlineSalesWhenException() throws Exception {
+        // Arrange
+        when(paymentInfoService.viewOnlineSales()).thenThrow(new RuntimeException("Database failure"));
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/payment/getOnlineSales")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError());
+    }
+    
+    
+    @Test
+    public void testManageSales() throws Exception {
+        // Arrange
+        long userId = 1L;
+        String expectedResponse = "Order saved successfully";
+        when(paymentInfoService.manageOnlineSales(any(SalesDTO.class))).thenReturn(expectedResponse);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/payment/saveorderdetails/{userId}", userId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedResponse));
+    }
+
+    @Test
+    public void testManageSalesWhenException() throws Exception {
+        // Arrange
+        long userId = 1L;
+        when(paymentInfoService.manageOnlineSales(any(SalesDTO.class))).thenThrow(new RuntimeException("Database failure"));
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/payment/saveorderdetails/{userId}", userId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError());
     }
 }

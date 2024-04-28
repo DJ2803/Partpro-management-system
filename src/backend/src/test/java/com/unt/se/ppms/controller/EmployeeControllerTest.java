@@ -2,8 +2,12 @@ package com.unt.se.ppms.controller;
 
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unt.se.ppms.dto.EmployeeDTO;
+import com.unt.se.ppms.dto.InventoryStatusDTO;
 import com.unt.se.ppms.dto.ProductsDTO;
 import com.unt.se.ppms.entities.Employee;
 import com.unt.se.ppms.repository.ProductsRepository;
@@ -29,7 +33,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ContextConfiguration(classes = {EmployeeController.class})
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ProductController.class)
+@WebMvcTest(EmployeeController.class)
 @DisabledInAotMode
 class EmployeeControllerTest {
 	@Autowired
@@ -40,6 +44,36 @@ class EmployeeControllerTest {
 
     @MockBean
     private EmployeeService employeeService;
+    
+    
+    
+    @Test
+    public void testGetInventoryByStatus() throws Exception {
+        // Arrange
+        InventoryStatusDTO inventory1 = new InventoryStatusDTO("Item1", "Available", 10);
+        InventoryStatusDTO inventory2 = new InventoryStatusDTO("Item2", "Low Stock", 2);
+        List<InventoryStatusDTO> inventoryList = Arrays.asList(inventory1, inventory2);
+        when(employeeService.getInventoryDetailsByStockStatus()).thenReturn(inventoryList);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/employee/getInventoryByStatus")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(new ObjectMapper().writeValueAsString(inventoryList)));
+                
+    }
+    
+    
+    @Test
+    public void testGetInventoryByStatusWhenException() throws Exception {
+        // Arrange
+        when(employeeService.getInventoryDetailsByStockStatus()).thenThrow(new RuntimeException("Database error"));
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/employee/getInventoryByStatus")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
     /**
      * Method under test: {@link EmployeeController#updateEmployee(Employee)}

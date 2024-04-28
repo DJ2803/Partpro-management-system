@@ -22,6 +22,8 @@ const ManageFeedbackComponent = () => {
     const [products, setProducts] = useState([])
     const [id,setId]=useState('')
     const [ rating, setRating] = useState('')
+    const [viewrating, setViewRating]= useState('')
+    const [showViewRatingModal, setShowViewRatingModal]=useState(false)
     const [showRatingModal, setShowRatingModal] = useState(false);
     const [hover, setHover] = useState(false);
 
@@ -50,6 +52,23 @@ const ManageFeedbackComponent = () => {
     setShowRatingModal(true);
         }
       }
+
+      const handleViewFeedbackClick= async (event,param)=>{
+        event.preventDefault()
+        if(param !==undefined){
+          const response = await CustomerServices.viewFeedback(state.userData.userId, param.productId).then(resp => {
+            console.log(resp)
+          if (resp.status === 200) {
+            setViewRating(resp.data.rating)
+            setShowViewRatingModal(true);
+          }
+        }).catch(err => {
+          console.log(err)
+        })
+        }
+      }
+
+      
     const getData = () => {
         DashboardServices.getAllProducts().then(response => {
             console.log(response.data)
@@ -109,6 +128,18 @@ const ManageFeedbackComponent = () => {
                                         Add/Update Feedback {hover ? <ArrowForward /> : <ArrowRight />}
                                     </Button>
                                 </HeroBtnWrapper>
+
+                                <HeroBtnWrapper style={{ display: "inline-block" }}>
+                                    <Button
+                                        onClick={(event) => handleViewFeedbackClick(event,item)}
+                                        onMouseEnter={onHover}
+                                        onMouseLeave={onHover}
+                                        primary="true"
+                                        dark="true"
+                                    >
+                                        View Feedback{hover ? <ArrowForward /> : <ArrowRight />}
+                                    </Button>
+                                </HeroBtnWrapper>
                             </div>
                         </>
                     ))}
@@ -137,6 +168,21 @@ const ManageFeedbackComponent = () => {
                     Submit {hover ? <ArrowForward /> : <ArrowRight />}
                   </Button>
                 </HeroBtnWrapper>
+              </Form>
+            </Modal.Body>
+          </Modal>
+
+          <Modal show={showViewRatingModal} onHide={() => setShowViewRatingModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>View Rating</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group>
+                  <Form.Label>Rating</Form.Label>
+                  <Form.Control type="text" placeholder=" View Rating"
+                    value={viewrating} />
+                </Form.Group>
               </Form>
             </Modal.Body>
           </Modal>

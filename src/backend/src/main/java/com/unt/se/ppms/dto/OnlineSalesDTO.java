@@ -12,6 +12,13 @@ public class OnlineSalesDTO {
 	
 	public String productName;
 
+	public OnlineSalesDTO() {
+		
+	}
+	public OnlineSalesDTO(String string, int i, int j) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public long getSaleID() {
 		return saleID;
 	}

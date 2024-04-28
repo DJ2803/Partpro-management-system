@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unt.se.ppms.entities.Cart;
 import com.unt.se.ppms.entities.Customer;
+import com.unt.se.ppms.entities.Feedback;
 import com.unt.se.ppms.exceptions.CustomerNotFoundException;
 import com.unt.se.ppms.service.CustomerService;
 
@@ -52,6 +53,17 @@ public class CustomerController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 		
+	}
+	
+	@GetMapping("/{userId}/viewFeedback/{productID}")
+	public ResponseEntity<Feedback> viewFeedback(@PathVariable long productID){
+		try {
+			Feedback feedback = customerService.viewFeedback(productID);
+			return new ResponseEntity<Feedback>(feedback, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
 	}
 	
 	@PostMapping("/{userId}/cart/addproduct")

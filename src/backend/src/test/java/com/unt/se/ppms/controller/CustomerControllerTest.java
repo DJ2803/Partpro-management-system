@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unt.se.ppms.entities.Cart;
 import com.unt.se.ppms.entities.Customer;
+import com.unt.se.ppms.entities.Feedback;
 import com.unt.se.ppms.exceptions.CustomerNotFoundException;
 import com.unt.se.ppms.service.CustomerService;
 
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +31,10 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
+import org.springframework.test.web.servlet.MockMvc;
 @ContextConfiguration(classes = {CustomerController.class})
 @ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = CustomerController.class)
 @DisabledInAotMode
 class CustomerControllerTest {
     @Autowired
@@ -39,6 +42,62 @@ class CustomerControllerTest {
 
     @MockBean
     private CustomerService customerService;
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Test
+    public void testAddOrUpdateFeedback() throws Exception {
+        // Arrange
+        Long userId = 1L;
+        Long productId = 1L;
+        float rating = 4.5f;
+        String expectedResponse = "Feedback updated successfully";
+
+        when(customerService.addOrUpdateFeedback(productId, rating)).thenReturn(expectedResponse);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.post("/ppms/customer/{userId}/addorUpdateFeedback", userId)
+                .param("productId", productId.toString())
+                .param("rating", String.valueOf(rating))
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedResponse));
+    }
+    
+    @Test
+    public void testViewFeedback() throws Exception {
+        // Arrange
+        long userId = 1L;  
+        long productId = 1L; 
+        Feedback expectedFeedback = new Feedback();  
+        expectedFeedback.setRating(5);  
+  
+        when(customerService.viewFeedback(productId)).thenReturn(expectedFeedback);
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/customer/{userId}/viewFeedback/{productID}", userId, productId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.rating").value(expectedFeedback.getRating()));
+         
+    }
+    
+    
+    @Test
+    public void testViewFeedbackWhenException() throws Exception {
+        // Arrange
+        long userId = 1L;
+        long productId = 1L;
+
+        when(customerService.viewFeedback(productId)).thenThrow(new RuntimeException("Unexpected error"));
+
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/ppms/customer/{userId}/viewFeedback/{productID}", userId, productId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 
     /**
      * Method under test:

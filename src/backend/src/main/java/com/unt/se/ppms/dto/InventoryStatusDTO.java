@@ -8,6 +8,13 @@ public class InventoryStatusDTO {
 	private float productPrice;
 	private String productDescription;
 	private String productImage;
+	
+	public InventoryStatusDTO() {
+		
+	}
+	public InventoryStatusDTO(String string, String string2, int i) {
+		// TODO Auto-generated constructor stub
+	}
 	public boolean isStatus() {
 		return status;
 	}

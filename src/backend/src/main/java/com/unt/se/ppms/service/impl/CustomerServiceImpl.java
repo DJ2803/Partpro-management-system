@@ -127,6 +127,15 @@ public class CustomerServiceImpl implements CustomerService {
 		return "Feedback changed";
 	}
 
+	@Override
+	public Feedback viewFeedback(long productID) {
+		  Feedback feedback = feedbackRepository.getFeedbackByProductID(productID);
+		  if(feedback ==null) {
+			  return null;
+		  }
+		  return feedback;
+	}
+
 
 
 }

@@ -20,6 +20,10 @@ class CustomerServices {
           })
     }
 
+    viewFeedback(userId, productId){
+        return axiosInstance.get(`${PARTPRO_BASE_URL}/customer/${userId}/viewFeedback/${productId}`)
+    }
+
 
 }
 
