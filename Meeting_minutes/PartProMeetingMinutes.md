@@ -18,4 +18,13 @@ March 23  6 to 8 pm. |  Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti,
 March 26 12.30 to 2 pm. | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Discussed the blockers for all feature implementations which are required for development phase 2. |
 March 30 6 to 8 pm. | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Done code reviews for all of the front end and back end changes for development phase 2  and we have distributed work for documentation for deliverable 4. |
 April 6 10 to 12 pm.| Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Code got merged into main repository and reviewed the documentation changes for deliverable 4.  
+April 9 12 to 1.30 pm.| Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Designed UML diagrams required for development phase 3 and distributed tasks for front end and back end.
+April 13 6 to 8 pm |  Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Discussed the blockers for all feature implementations which are required for development phase 3.
+April 16 12 to 2 pm | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Deployed code of previous of development phase in Azure cloud VM.
+April 20 8 to 10 pm | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede |Done code reviews for all of the front end and back end changes for development phase 3  and we have distributed work for documentation for deliverable 5.
+April 23 12.30 to 1.30 pm | Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede |Code got merged into main repository and reviewed the documentation changes for deliverable 5. 
+April 27 6 to 8 pm |  Sai Rahul Padma, Nikhita Muvva, Sai Samyuktha Paspuleti, Rishika Yalamanchili,Pavani Vengalla, HimaBindu Chunduri, Sneha Reddy Gangannagari, Jhasha Sri Ede | Code got deployed for newly developed phase and created power point presentation for Demo.
+
+
+
 
