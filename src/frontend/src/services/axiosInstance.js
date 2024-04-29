@@ -1,6 +1,6 @@
 import  axios from "axios";
 
-const baseUrl = 'http://localhost:8080/ppms';
+const baseUrl = 'http://40.90.239.103:8080/ppms';
 console.log(baseUrl)
 
 

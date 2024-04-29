@@ -7,7 +7,7 @@ import {
 import {GlobalStateContext} from  '../../GlobalStateContext'
 import { Button } from "../../components/ButtonElement";
 import '../ProductDetailsComponent/ProductDetails.css';
-import EmployeeNavbar from "../../components/EmployeeNabBar/index"
+import Navbar from "../../components/DashboardNavBar/index"
 import {  Form, Modal } from 'react-bootstrap';
 import {
     HeroBtnWrapper,
@@ -104,8 +104,8 @@ const ManageFeedbackComponent = () => {
 
     return (
         <>
-            <EmployeeNavbar>
-            </EmployeeNavbar>
+            <Navbar>
+            </Navbar>
             <FeaturesSec>
                 <div className="product-grid">
                     {products.map((item) => (

@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosInstance";
 
-const PARTPRO_BASE_URL = 'http://localhost:8080/ppms';
+const PARTPRO_BASE_URL = 'http://40.90.239.103:8080/ppms';
 
 
 
