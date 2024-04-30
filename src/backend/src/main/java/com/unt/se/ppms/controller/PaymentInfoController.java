@@ -50,8 +50,8 @@ public class PaymentInfoController {
                 "paypal",
                 "sale",
                 "Payment description",
-                "http://localhost:8080/ppms/payment/"+userId+"/cancel",
-                "http://localhost:8080/ppms/payment/"+userId+"/success"
+                "http://40.90.239.103:8080/ppms/payment/"+userId+"/cancel",
+                "http://40.90.239.103:8080/ppms/payment/"+userId+"/success"
             );
             for (Links link : payment.getLinks()) {
             	System.out.println(link);
@@ -98,7 +98,7 @@ public class PaymentInfoController {
                 dto.setProductIDString(productIdsString);
                 dto.setTotalAmount(Double.parseDouble(totalAmount));
                 paymentInfoService.manageOnlineSales(dto);
-                String redirectUrl = "http://localhost:3000/payment-success?orderId=" + paymentId + "&orderStatus=Pending" + "&productIds=" + productIdsString;
+                String redirectUrl = "http://20.163.136.45/payment-success?orderId=" + paymentId + "&orderStatus=Pending" + "&productIds=" + productIdsString;
                 return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(redirectUrl)).build();
             } else {
                 return ResponseEntity.unprocessableEntity().body("Payment execution failed. State: " + payment.getState());
@@ -122,7 +122,7 @@ public class PaymentInfoController {
                 paymentInfo.setPaymentStatus(PaymentStatus.CANCELLED.getStr());
                 paymentInfoService.addOrUpdatePayment(paymentInfo);  
             }
-            String redirectUrl = "http://localhost:3000/cart";
+            String redirectUrl = "http://20.163.136.45/cart";
             return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(redirectUrl)).build();
       
         } catch (Exception e) {
